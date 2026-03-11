@@ -17,10 +17,17 @@ html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Seg
 /* Header */
 .site-header{background:linear-gradient(90deg,var(--accent) 0%,var(--accent-2) 100%);color:#fff}
 .header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-.brand h1{margin:0;font-size:1.2rem;font-weight:800}
+.brand h1{text-decoration:none;color:#fff;margin:0;font-size:1.2rem;font-weight:800}
 .subtitle{margin:4px 0 0;font-size:0.85rem;opacity:0.95}
 .main-nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:600}
-.main-nav a:hover{opacity:0.95}
+.main-nav a:hover{text-decoration: none;opacity:0.95}
+
+/* Supprime l'animation du trait uniquement pour le nom dans le header,
+garde le nom totalement blanc */
+.brand a {
+  opacity: 1;
+  text-decoration: none;
+}
 
 /* Hero */
 .hero{padding:36px 0;background:linear-gradient(180deg,rgba(11,110,246,0.06),transparent);}
