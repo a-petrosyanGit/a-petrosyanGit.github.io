@@ -1,0 +1,181 @@
+/* styles.css - version améliorée pour portfolio */
+
+:root{
+  --bg:#f6f9ff;
+  --card:#ffffff;
+  --accent:#0b6ef6;
+  --accent-2:#4aa3ff;
+  --muted:#6b7280;
+  --text:#0f1720;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;color:var(--text);background:var(--bg);scroll-behavior:smooth}
+
+.container{max-width:1100px;margin:0 auto;padding:28px}
+
+/* Header */
+.site-header{background:linear-gradient(90deg,var(--accent) 0%,var(--accent-2) 100%);color:#fff}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.brand h1{margin:0;font-size:1.2rem;font-weight:800}
+.subtitle{margin:4px 0 0;font-size:0.85rem;opacity:0.95}
+.main-nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:600}
+.main-nav a:hover{opacity:0.95}
+
+/* Hero */
+.hero{padding:36px 0;background:linear-gradient(180deg,rgba(11,110,246,0.06),transparent);}
+.hero-inner{display:flex;gap:24px;align-items:center}
+.hero-text h2{margin:0;font-size:1.6rem}
+.hero-text p{color:var(--muted);margin:10px 0 16px;line-height:1.45}
+.hero-cta .btn{display:inline-block;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700}
+.btn.primary{background:var(--accent);color:#fff;margin-right:10px;box-shadow:0 6px 18px rgba(11,110,246,0.15)}
+.btn{background:#fff;color:var(--accent);border:1px solid rgba(15,23,32,0.04)}
+
+.hero-card{background:#fff;padding:16px;border-radius:12px;box-shadow:0 8px 22px rgba(12,34,60,0.06);display:flex;flex-direction:column;align-items:center;min-width:180px}
+.avatar{margin-bottom:8px}
+.meta{color:var(--muted);font-size:0.85rem}
+
+/* Avatar 3D tilt */
+.avatar-3d{perspective:1000px;display:inline-block;border-radius:999px}
+.avatar-inner{transform-style:preserve-3d;transition:transform .12s cubic-bezier(.2,.9,.2,1),box-shadow .12s;will-change:transform;display:inline-block;border-radius:999px;overflow:hidden}
+.avatar-inner svg{display:block}
+
+/* Gear decoration and slight rotation */
+.avatar-gear{position:absolute;right:-6px;bottom:-6px;width:42px;height:42px;opacity:0.95}
+.avatar-gear .gear{fill:rgba(255,255,255,0.12);stroke:rgba(255,255,255,0.25);stroke-width:1}
+.gear-rotate{animation:gear-spin 6s linear infinite}
+@keyframes gear-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* Tilt settings control */
+.tilt-control{position:fixed;right:18px;bottom:18px;background:var(--card);border-radius:12px;padding:10px 12px;box-shadow:0 10px 30px rgba(2,6,23,0.12);z-index:80;display:flex;align-items:center;gap:8px}
+.tilt-control button{background:transparent;border:none;cursor:pointer;font-size:18px}
+.tilt-panel{display:flex;align-items:center;gap:8px}
+.tilt-panel label{font-size:0.85rem;color:var(--muted)}
+.tilt-range{width:140px}
+
+
+
+/* Decorative animated circles in hero */
+.hero{position:relative;overflow:hidden}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;opacity:0.14;filter:blur(24px);pointer-events:none}
+.hero::before{width:320px;height:320px;background:radial-gradient(circle at 30% 30%,var(--accent),transparent);left:-60px;top:-80px;animation:float 8s ease-in-out infinite}
+.hero::after{width:260px;height:260px;background:radial-gradient(circle at 70% 70%,var(--accent-2),transparent);right:-40px;bottom:-60px;animation:float 10s ease-in-out infinite alternate}
+
+@keyframes float{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-18px) translateX(6px)}100%{transform:translateY(0) translateX(0)}}
+
+/* Cards */
+.card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(15,23,32,0.04);margin:20px 0}
+
+/* Skills */
+.skill{margin:12px 0}
+.skill-header{display:flex;justify-content:space-between;margin-bottom:6px;font-weight:600}
+.skill-bar{background:#eef3ff;border-radius:999px;height:12px;overflow:hidden}
+.skill-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px;transition:width 1.2s cubic-bezier(.2,.9,.2,1)}
+
+/* Projects */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.project{background:linear-gradient(180deg,#fff,#fbfdff);padding:14px;border-radius:10px;transition:transform .18s ease,box-shadow .18s ease}
+.project:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(12,34,60,0.08)}
+.project .more{margin-top:10px;background:transparent;border:1px solid rgba(11,110,246,0.12);padding:8px 10px;border-radius:8px;cursor:pointer}
+
+/* Modal */
+.modal{display:none}
+.modal[aria-hidden="false"]{display:block;position:fixed;inset:0;z-index:60}
+.modal-overlay{position:fixed;inset:0;background:rgba(2,6,23,0.5)}
+.modal-panel{position:relative;margin:60px auto;max-width:720px;background:var(--card);border-radius:12px;padding:20px;box-shadow:0 30px 80px rgba(2,6,23,0.4);z-index:70}
+.modal-close{position:absolute;right:12px;top:8px;border:none;background:transparent;font-size:22px;cursor:pointer}
+.modal-actions{margin-top:16px;display:flex;gap:8px}
+.modal-carousel{display:flex;align-items:center;gap:12px;margin:12px 0}
+.carousel-track{flex:1;display:flex;align-items:center;justify-content:center;min-height:220px}
+.carousel-img{max-width:100%;max-height:420px;border-radius:8px;box-shadow:0 12px 30px rgba(2,6,23,0.12)}
+.carousel-prev,.carousel-next{background:transparent;border:1px solid rgba(2,6,23,0.06);padding:8px 12px;border-radius:8px;cursor:pointer;font-size:20px}
+.carousel-prev:hover,.carousel-next:hover{background:rgba(11,110,246,0.06)}
+
+/* Header actions */
+.header-actions{display:flex;align-items:center;gap:10px}
+.btn.small{padding:8px 10px;border-radius:8px;font-weight:700;background:#fff;color:var(--accent)}
+.icon-btn{background:transparent;border-radius:8px;border:1px solid rgba(255,255,255,0.12);padding:8px;cursor:pointer;color:#fff}
+
+/* Focus states for accessibility */
+.project:focus{outline:3px solid rgba(10,100,230,0.14);transform:translateY(-4px)}
+.icon-btn:focus{outline:2px solid rgba(255,255,255,0.18)}
+
+/* Dark theme */
+html.dark{--bg:#071023;--card:#071826;--accent:#79b8ff;--accent-2:#5cc0ff;--muted:#94a3b8;--text:#e6eef8}
+html.dark body{background:var(--bg);color:var(--text)}
+.dark .site-header{background:linear-gradient(90deg,var(--accent) 0%,var(--accent-2) 100%)}
+.dark .card{background:linear-gradient(180deg,#071a2a,#071826)}
+.dark .project-thumb rect{fill:#083148}
+
+/* Reveal animations */
+.reveal{opacity:0;transform:translateY(18px) scale(.995);transition:opacity .7s cubic-bezier(.2,.9,.2,1),transform .7s cubic-bezier(.2,.9,.2,1)}
+.reveal.is-visible{opacity:1;transform:none}
+
+/* Navigation underline animation */
+.main-nav a{position:relative}
+.main-nav a::after{content:"";position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));bottom:-8px;transform:scaleX(0);transform-origin:left center;transition:transform .28s cubic-bezier(.2,.9,.2,1),opacity .28s}
+.main-nav a:hover::after,.main-nav a:focus::after{transform:scaleX(1);opacity:1}
+
+/* Project hover overlay + subtle 3D tilt */
+.project{perspective:900px}
+.project .project-thumb{transition:transform .28s cubic-bezier(.2,.9,.2,1)}
+.project:hover .project-thumb{transform:translateY(-6px) rotateX(4deg)}
+.project::after{content:"";position:absolute;inset:0;border-radius:10px;pointer-events:none;transition:box-shadow .28s}
+.project:hover::after{box-shadow:inset 0 0 60px rgba(11,110,246,0.02)}
+
+/* Subtle text gradients */
+.hero-text h2{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Improve social links */
+.socials a{padding:6px 8px;border-radius:8px;border:1px solid transparent}
+.socials a:hover{background:rgba(11,110,246,0.06);border-color:rgba(11,110,246,0.08)}
+
+/* Small utility */
+.muted{color:var(--muted)}
+
+.project-thumb{height:100px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.project h3{margin:0 0 6px}
+.tag{display:inline-block;margin-top:10px;color:var(--muted);font-size:0.85rem}
+
+/* Timeline */
+.timeline{display:flex;flex-direction:column;gap:16px;margin-top:16px}
+.timeline-item{padding:16px;background:linear-gradient(135deg,#f0f9ff,#f9f1ff);border-radius:8px;border-left:4px solid var(--accent)}
+.timeline-item h3{margin:0 0 4px;font-size:1.05rem}
+.timeline-item .muted{margin:0;font-size:0.85rem}
+.timeline-item p{margin:8px 0 0;line-height:1.45;color:#555}
+
+/* Mini Gallery */
+.mini-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0}
+.mini-gallery img{width:100%;height:auto;border-radius:8px;object-fit:cover;max-height:180px;box-shadow:0 4px 12px rgba(12,34,60,0.08)}
+
+/* Passions */
+.passions-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.passion{padding:14px;background:linear-gradient(180deg,#fff7ed,#fffaf5);border-radius:8px}
+
+/* Contact */
+.contact-form{display:grid;gap:10px}
+.contact-form div{display:grid;gap:4px}
+.contact-form label{font-size:0.9rem;font-weight:600;color:var(--text)}
+.contact-form input,.contact-form textarea{padding:10px;border:1px solid #e6eef9;border-radius:8px;font-family:inherit;font-size:14px}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(11,110,246,0.1)}
+.contact-form button{background:var(--accent);color:#fff;border:none;padding:12px 16px;border-radius:8px;font-weight:800;cursor:pointer;font-size:14px}
+.contact-form button:hover{opacity:0.95;box-shadow:0 6px 18px rgba(11,110,246,0.15)}
+
+/* Footer */
+.site-footer{margin-top:28px;padding:16px 0;text-align:center;color:var(--muted);font-size:0.9rem;border-top:1px solid rgba(12,34,60,0.04)}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.socials a{margin-left:10px;color:var(--muted);text-decoration:none}
+
+/* Responsive */
+@media (max-width:880px){
+  .hero-inner{flex-direction:column;align-items:flex-start}
+  .footer-inner{flex-direction:column;text-align:center}
+}
+
+@media (max-width:720px){
+  .header-inner{flex-direction:column;gap:10px;text-align:center}
+  .passions-grid{grid-template-columns:1fr}
+  .main-nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+  .hero-text h2{font-size:1.2rem}
+}
+

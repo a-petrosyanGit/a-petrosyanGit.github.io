@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projets — Avtandil PETROSYAN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="include-html.js" defer></script>
+  <script src="main.js" defer></script>
+</head>
+<body>
+  <div data-include="includes/header.html"></div>
+  <main class="container">
+    <section class="card reveal">
+      <h1>Projets</h1>
+      <p>Liste des projets et démonstrations. Clique sur un projet pour voir les détails et galerie.</p>
+      <div class="project-grid">
+        <article class="project" tabindex="0" role="button" data-title="Site Horlogerie" data-desc="Site web dédié à l'horlogerie — développé en HTML/CSS avec focus sur l'accessibilité et la découverte de la mécanique des montres." data-tags="Frontend • Accessibilité" data-images="https://picsum.photos/seed/watch1/800/480,https://picsum.photos/seed/watch2/800/480">
+          <div class="project-thumb"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="80" rx="6" fill="#eef6ff"></rect><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#0b6ef6" font-family="Inter" font-size="12">Horlogerie</text></svg></div>
+          <h3>Site Horlogerie</h3>
+          <p>Création d'un site web pour découvrir l'horlogerie (en cours). HTML/CSS + accessibilité.</p>
+          <p class="tag">HTML/CSS • Web</p>
+          <button class="more">En savoir plus</button>
+        </article>
+
+        <article class="project" tabindex="0" role="button" data-title="Jeu en Pascal" data-desc="Application simple développée en Pascal. Gestion de l'affichage et mise à jour dynamique de la date." data-tags="Pascal • Jeux" data-images="https://picsum.photos/seed/game1/800/480">
+          <div class="project-thumb"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="80" rx="6" fill="#fff7ed"></rect><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#ff8a00" font-family="Inter" font-size="12">Jeu</text></svg></div>
+          <h3>Application Jeu (Pascal)</h3>
+          <p>Développement d'une application simple en Pascal. Gestion de la date et mise à jour de l'affichage.</p>
+          <p class="tag">Pascal • Encadré</p>
+          <button class="more">En savoir plus</button>
+        </article>
+
+        <article class="project" tabindex="0" role="button" data-title="Configuration Système" data-desc="Installation et configuration d'un poste de développement Java. Système d'exploitation Ubuntu et conception de la machine." data-tags="Linux • Java" data-images="https://picsum.photos/seed/sys1/800/480">
+          <div class="project-thumb"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="80" rx="6" fill="#f0f7ff"></rect><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#0066cc" font-family="Inter" font-size="12">Système</text></svg></div>
+          <h3>Configuration Système</h3>
+          <p>Installation d'Ubuntu et configuration d'un poste de développement Java complet.</p>
+          <p class="tag">Linux • Système</p>
+          <button class="more">En savoir plus</button>
+        </article>
+
+        <article class="project" tabindex="0" role="button" data-title="Base de Données" data-desc="Conception d'une base de données. Réalisation du MCD/MLD et structure relationnelle." data-tags="SQL • BDD" data-images="https://picsum.photos/seed/db1/800/480">
+          <div class="project-thumb"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="80" rx="6" fill="#f9f0ff"></rect><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#aa00ff" font-family="Inter" font-size="12">BDD</text></svg></div>
+          <h3>Base de Données</h3>
+          <p>Conception et modélisation d'une base de données. Réalisation du MCD et du MLD.</p>
+          <p class="tag">SQL • Modélisation</p>
+          <button class="more">En savoir plus</button>
+        </article>
+
+        <article class="project" tabindex="0" role="button" data-title="Refresh PC" data-desc="Rafraîchissement d'un PC et installation d'un système d'exploitation adapté aux performances et aux besoins." data-tags="PC • Maintenance" data-images="https://picsum.photos/seed/pc1/800/480">
+          <div class="project-thumb"><svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="80" rx="6" fill="#fff5f0"></rect><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#cc4400" font-family="Inter" font-size="12">PC</text></svg></div>
+          <h3>Rafraîchissement PC</h3>
+          <p>Maintenance et installation d'un OS adapté sur un PC existant pour optimiser les performances.</p>
+          <p class="tag">Hardware • OS</p>
+          <button class="more">En savoir plus</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- Modal projet -->
+    <div id="project-modal" class="modal" role="dialog" aria-hidden="true" aria-labelledby="project-modal-title">
+      <div class="modal-overlay" data-close="true"></div>
+      <div class="modal-panel">
+        <button class="modal-close" aria-label="Fermer">×</button>
+        <h3 id="project-modal-title">Titre</h3>
+        <div id="project-modal-carousel" class="modal-carousel">
+          <button class="carousel-prev" aria-label="Précédent">‹</button>
+          <div class="carousel-track" aria-live="polite"></div>
+          <button class="carousel-next" aria-label="Suivant">›</button>
+        </div>
+        <p id="project-modal-desc">Description</p>
+        <p id="project-modal-tags" class="tag">Tags</p>
+        <div class="modal-actions">
+          <a id="modal-view" class="btn" href="#" target="_blank">Voir</a>
+          <a id="modal-source" class="btn" href="#">Source</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <div data-include="includes/footer.html"></div>
+</body>
+</html>
