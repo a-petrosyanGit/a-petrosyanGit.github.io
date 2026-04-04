@@ -42,9 +42,38 @@ function initSite(){
   // Simple form submit prevention (demo)
   const form = document.querySelector('.contact-form');
   if(form){
-    form.addEventListener('submit', function(e){
+    form.addEventListener('submit', async function(e){
       e.preventDefault();
-      alert('Merci — message simulé. (Cela peut être connecté à un backend plus tard)');
+      
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      const messageDiv = document.getElementById('form-message');
+      
+      try {
+        const response = await fetch('/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ name, email, message })
+        });
+        
+        if(response.ok){
+          messageDiv.style.display = 'block';
+          messageDiv.style.backgroundColor = '#d4edda';
+          messageDiv.style.color = '#155724';
+          messageDiv.textContent = '✓ Message envoyé avec succès !';
+          form.reset();
+        } else {
+          throw new Error('Erreur serveur');
+        }
+      } catch(error){
+        messageDiv.style.display = 'block';
+        messageDiv.style.backgroundColor = '#f8d7da';
+        messageDiv.style.color = '#721c24';
+        messageDiv.textContent = '✗ Erreur lors de l\'envoi. Vérifiez votre connexion.';
+      }
     });
   }
 
