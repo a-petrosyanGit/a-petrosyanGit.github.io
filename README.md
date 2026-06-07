@@ -1,36 +1,39 @@
-# Portfolio Avtandil PETROSYAN
+# Agence Web PETROSYAN — Services WordPress & Développement Personnalisé
 
-Portfolio responsive d'un étudiant en BUT Informatique à Dijon — projets, compétences, passions (horlogerie, entreprenariat).
+Site agence web proposant des services de création de sites internet en **WordPress** et **développement web personnalisé** pour PME et entrepreneurs.
 
 ## Structure
 
 ```
 testHTMLcss/
-├── index.html              # Page d'accueil (landing)
-├── test.html               # Landing page (alias)
-├── about.html              # À propos + formation
-├── projects.html           # Projets détaillés + carousel
-├── skills.html             # Compétences, langues, expériences
-├── passions.html           # Passions avec galerie
-├── contact.html            # Formulaire de contact
+├── index.html              # Landing agence (Hero + Services + CTA)
+├── services.html           # Détail services : WordPress vs Développement personnalisé
+├── projects.html           # Portfolio / Case studies clients
+├── pricing.html            # Tarifs & packages disponibles
+├── about.html              # Qui sommes-nous + expertise
+├── contact.html            # Contact + Demande de devis
 ├── styles.css              # Styles global (dark mode, animations, responsive)
 ├── main.js                 # Interactions (reveal, modal, tilt avatar, theme toggle)
 ├── include-html.js         # Chargeur de fragments HTML
 ├── includes/
-│   ├── header.html         # En-tête partagé (navigation)
-│   └── footer.html         # Pied de page partagé
-└── CV_fev2026.pdf          # CV téléchargeable
+│   ├── header.html         # En-tête agence (navigation)
+│   └── footer.html         # Pied de page (mentions, liens sociaux)
+└── test.html               # Landing page alternative
 ```
 
-## 📋 Infos du CV intégrées
+## 📋 Services proposés
 
-- **Nom** : Avtandil PETROSYAN
+- **WordPress** : Sites vitrines et e-commerce clé en main
+- **Développement personnalisé** : Solutions web sur mesure (HTML/CSS/JS, Python, React)
+- **Consultation** : Audit et optimisation de sites existants
+- **Maintenance** : Support technique et mises à jour
+
+## Infos de contact
+
 - **Email** : petrosyan21000@gmail.com
 - **Localisation** : Dijon, 21000 (France)
-- **Formation** : BUT Informatique (1ère année) — IUT Dijon
-- **Spécialités** : HTML/CSS, Python, Pascal, C#, SQL
-- **Langues** : Français (bilingue), Arménien (bilingue), Anglais (B1), Russe (A2), Espagnol (A2)
-- **Passions** : Horlogerie, Entrepreneuriat
+- **Disponibilité** : Projets court & long terme
+- **Spécialiste** : PME, startups, micro-entrepreneurs
 
 ## Démarrage local
 
@@ -58,111 +61,67 @@ http-server
 - Installez l'extension "Live Server" (ritwickdey.LiveServer)
 - Clic droit sur `index.html` → "Open with Live Server"
 
-## ➕ Comment ajouter un nouveau projet
+## Modification rapide
 
-### Étape 1 : Ajouter le projet dans `projects.html`
+### Ajouter un projet client dans portfolio
 
-Dupliquez un bloc `<article>` existant dans la `.project-grid` et modifiez :
+Éditez `projects.html` — ajoutez une carte projet :
 
 ```html
 <article class="project" tabindex="0" role="button" 
-  data-title="Titre du Projet" 
-  data-desc="Description courte du projet..." 
-  data-tags="Tech1 • Tech2" 
-  data-images="url1.jpg,url2.jpg">
+  data-title="Nom du Client" 
+  data-desc="Description du projet..." 
+  data-tags="WordPress|React|E-commerce" 
+  data-images="image1.jpg,image2.jpg">
   <div class="project-thumb">
     <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
       <rect width="120" height="80" rx="6" fill="#eef6ff"></rect>
-      <text x="50%" y="54%" ... fill="#0b6ef6" ...>Label</text>
-    </svg>
-  </div>
-  <h3>Titre du Projet</h3>
-  <p>Description courte</p>
-  <p class="tag">Tech1 • Tech2</p>
-  <button class="more">En savoir plus</button>
-</article>
-```
-
-**Attributs à modifier** :
-- `data-title` : Nom du projet
-- `data-desc` : Description complète (affichée dans modal)
-- `data-tags` : Technologies/catégories (séparées par " • ")
-- `data-images` : URLs des images (séparées par virgule) — utilisez `picsum.photos` ou vos propres images
-
-### Exemple avec valeurs réelles
-
-```html
-<article class="project" tabindex="0" role="button" 
-  data-title="Mon API REST" 
-  data-desc="Création d'une API REST en Python+Flask avec authentification JWT et BDD PostgreSQL." 
-  data-tags="Python • API • Flask" 
-  data-images="https://picsum.photos/seed/api1/800/480,https://picsum.photos/seed/api2/800/480">
-  <div class="project-thumb">
-    <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-      <rect width="120" height="80" rx="6" fill="#f0f7ff"></rect>
       <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" 
-        fill="#0066cc" font-family="Inter" font-size="12">API REST</text>
+        fill="#0b6ef6" font-family="Inter" font-size="12">Tag</text>
     </svg>
   </div>
-  <h3>Mon API REST</h3>
-  <p>Création d'une API REST en Python+Flask avec authentification JWT et BDD PostgreSQL.</p>
-  <p class="tag">Python • API • Flask</p>
+  <h3>Nom du Client</h3>
+  <p>Description courte</p>
+  <p class="tag">WordPress • E-commerce</p>
   <button class="more">En savoir plus</button>
 </article>
 ```
 
-### Étape 2 : Personnaliser les couleurs (optionnel)
+### Modifier textes et infos
 
-Changez la couleur SVG du thumbnail en modifiant les valeurs `fill` :
+- **Header & Navigation** : `includes/header.html`
+- **Footer & Contact** : `includes/footer.html`
+- **Textes pages** : `index.html`, `services.html`, `about.html`, etc.
+- **Styles** : `styles.css` (variables CSS au top)
 
-```html
-<!-- Bleu -->
-<rect fill="#eef6ff"></rect>
-<text fill="#0b6ef6"></text>
+## 🌟 Fonctionnalités principales
 
-<!-- Orange -->
-<rect fill="#fff7ed"></rect>
-<text fill="#ff8a00"></text>
+✨ **Design moderne** — Brand professionnel  
+🌙 **Dark Mode** — Bascule thème  
+✨ **Animations** — Reveal au scroll, hover effects  
+📸 **Portfolio Modal** — Galeries d'images clients  
+📱 **Responsive** — Mobile, tablet, desktop  
+🎯 **CTAs visibles** — Demande de devis partout  
+📝 **Formulaire contact** — Validation intégrée  
 
-<!-- Purple -->
-<rect fill="#f9f0ff"></rect>
-<text fill="#aa00ff"></text>
-```
-
-## Fonctionnalités
-
-✨ **Avatar 3D** — Tilt interactif du curseur avec contrôle d'intensité (⚙️ bottom-right)  
-🌙 **Dark Mode** — Bascule thème avec persistance localStorage  
-✨ **Animations** — Reveal IntersectionObserver, barres de compétences animées  
-📸 **Modal Carousel** — Galerie d'images pour chaque projet  
-🔗 **Multi-pages** — Navigation partagée, header/footer réutilisables  
-📱 **Responsive** — Mobile-first CSS Grid + Flexbox  
-
-## Personnalisation
-
-1. Remplacer `Avtandil PETROSYAN` et infos dans `includes/header.html` et `includes/footer.html`
-2. Ajouter/modifier projets dans `projects.html` (ajouter `data-images="url1,url2"` pour carousel)
-3. Ajouter un vrai CV en remplaçant `CV.pdf`
-4. Mettre à jour liens GitHub/LinkedIn dans le footer
-
-## Déploiement
+## 🚀 Déploiement
 
 ### GitHub Pages
 
 ```bash
 git init
 git add .
-git commit -m "Initial commit: portfolio"
+git commit -m "Agence Web PETROSYAN"
 git branch -M main
-git remote add origin https://github.com/USERNAME/portfolio.git
+git remote add origin https://github.com/USERNAME/repo.git
 git push -u origin main
 ```
 
-Puis dans les settings du repo GitHub → Pages → Source: `main` branch.
+Puis repo settings → Pages → Source: `main`
 
-### Netlify
+### Netlify (recommandé - formulaires)
 
-Upload du dossier `testHTMLcss` via [netlify.com/drop](https://app.netlify.com/drop)
+Upload via [netlify.com/drop](https://app.netlify.com/drop)
 
 ### Vercel
 
@@ -172,13 +131,14 @@ cd testHTMLcss
 vercel
 ```
 
-## Notes
+## 📖 Documentation complète
 
-- `main.js` centralise toutes les interactions (reveal, modal, tilt, theme)
-- Le CSS utilise CSS variables (`:root`) pour la personnalisation facile
-- Pas de dépendances externes (vanilla JS/CSS)
-- Support des anciens navigateurs (IE11–) : adapter les préfixes `-webkit-`
+Voir `DOCUMENTATION.md` pour :
+- Architecture technique complète
+- Guide modification détaillé
+- Pages et fonctionnalités
+- Maintenance
 
 ---
 
-**Dernière mise à jour** : 6 février 2026
+**Agence Web PETROSYAN — 7 juin 2026**
