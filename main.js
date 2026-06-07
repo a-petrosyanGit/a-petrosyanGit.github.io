@@ -39,16 +39,42 @@ function initSite(){
   const skillsSection = document.getElementById('skills');
   if(skillsSection) skillObserver.observe(skillsSection);
 
-  // Simple form submit prevention (demo)
+  // Contact form submission with validation
   const form = document.querySelector('.contact-form');
   if(form){
     form.addEventListener('submit', async function(e){
       e.preventDefault();
       
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone') ? document.getElementById('phone').value.trim() : '';
+      const projectType = document.getElementById('project-type') ? document.getElementById('project-type').value : '';
+      const budget = document.getElementById('budget') ? document.getElementById('budget').value : '';
+      const message = document.getElementById('message').value.trim();
+      const terms = document.getElementById('terms') ? document.getElementById('terms').checked : true;
       const messageDiv = document.getElementById('form-message');
+      
+      // Validation
+      if (!name || !email || !message) {
+        messageDiv.style.display = 'block';
+        messageDiv.style.backgroundColor = '#f8d7da';
+        messageDiv.style.color = '#721c24';
+        messageDiv.textContent = '✗ Veuillez remplir tous les champs obligatoires.';
+        return;
+      }
+      
+      if (!terms) {
+        messageDiv.style.display = 'block';
+        messageDiv.style.backgroundColor = '#f8d7da';
+        messageDiv.style.color = '#721c24';
+        messageDiv.textContent = '✗ Vous devez accepter les conditions d\'utilisation.';
+        return;
+      }
+      
+      const formData = { name, email, message };
+      if (phone) formData.phone = phone;
+      if (projectType) formData.projectType = projectType;
+      if (budget) formData.budget = budget;
       
       try {
         const response = await fetch('/send-email', {
@@ -56,14 +82,14 @@ function initSite(){
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ name, email, message })
+          body: JSON.stringify(formData)
         });
         
         if(response.ok){
           messageDiv.style.display = 'block';
           messageDiv.style.backgroundColor = '#d4edda';
           messageDiv.style.color = '#155724';
-          messageDiv.textContent = '✓ Message envoyé avec succès !';
+          messageDiv.textContent = '✓ Demande de devis envoyée avec succès ! Nous vous recontacterons sous 48h.';
           form.reset();
         } else {
           throw new Error('Erreur serveur');

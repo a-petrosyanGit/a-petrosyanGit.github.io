@@ -22,38 +22,49 @@ const transporter = nodemailer.createTransport({
 
 // Route pour envoyer l'email
 app.post('/send-email', async (req, res) => {
-  const { name, email, message } = req.body;
+  const { name, email, message, phone, projectType, budget } = req.body;
 
   // Validation basique
   if (!name || !email || !message) {
-    return res.status(400).send('Tous les champs sont obligatoires');
+    return res.status(400).send('Tous les champs requis ne sont pas présents');
   }
 
   try {
+    // Format du message
+    let emailContent = `
+      <h2>Nouvelle Demande de Devis</h2>
+      <p><strong>Nom :</strong> ${name}</p>
+      <p><strong>Email :</strong> ${email}</p>
+    `;
+    
+    if (phone) emailContent += `<p><strong>Téléphone :</strong> ${phone}</p>`;
+    if (projectType) emailContent += `<p><strong>Type de projet :</strong> ${projectType}</p>`;
+    if (budget) emailContent += `<p><strong>Budget indicatif :</strong> ${budget}</p>`;
+    
+    emailContent += `
+      <p><strong>Message :</strong></p>
+      <p>${message.replace(/\n/g, '<br>')}</p>
+    `;
+
     // Email à vous-même
     await transporter.sendMail({
       from: 'petrosyan21000@gmail.com',
       to: 'petrosyan21000@gmail.com',
-      subject: `Nouveau message de ${name}`,
-      html: `
-        <h2>Nouveau message de contact</h2>
-        <p><strong>Nom :</strong> ${name}</p>
-        <p><strong>Email :</strong> ${email}</p>
-        <p><strong>Message :</strong></p>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `
+      subject: `Nouvelle demande de devis de ${name}`,
+      html: emailContent
     });
 
     // Email de confirmation au visiteur
     await transporter.sendMail({
       from: 'petrosyan21000@gmail.com',
       to: email,
-      subject: 'Confirmation - Message reçu',
+      subject: 'Demande de devis reçue - Agence Web PETROSYAN',
       html: `
-        <h2>Merci pour votre message !</h2>
+        <h2>Merci pour votre demande de devis !</h2>
         <p>Bonjour ${name},</p>
-        <p>Votre message a bien été reçu. Je vous recontacterai au plus vite.</p>
-        <p>À bientôt !</p>
+        <p>Nous avons bien reçu votre demande de devis. Notre équipe l'examinera attentivement et nous vous recontacterons sous 48h.</p>
+        <p>Merci de votre confiance !</p>
+        <p>L'équipe Agence Web PETROSYAN</p>
       `
     });
 

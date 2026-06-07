@@ -1,22 +1,50 @@
 <header class="site-header">
   <div class="container header-inner">
     <div class="brand">
-      <a href="index.html"><h1>Avtandil PETROSYAN</h1></a>
-      <p class="subtitle">Étudiant en BUT Informatique — Dijon</p>
+      <a href="index.html"><h1>PETROSYAN</h1></a>
+      <p class="subtitle">Agence Web — Dijon</p>
     </div>
-    <nav class="main-nav">
+    <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Menu mobile" aria-expanded="false">
+      <span class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+    <nav class="main-nav" id="main-nav">
       <a href="index.html">Accueil</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Portfolio</a>
+      <a href="pricing.html">Tarifs</a>
       <a href="about.html">À propos</a>
-      <a href="projects.html">Projets</a>
-      <a href="skills.html">Compétences</a>
-      <a href="passions.html">Passions</a>
       <a href="contact.html">Contact</a>
     </nav>
     <div class="header-actions">
-      <a class="btn small" href="CV_Alternance.pdf" download>Télécharger CV</a>
+      <a class="btn small cta-btn" href="contact.html">Demander un devis</a>
       <button id="theme-toggle" class="icon-btn" aria-pressed="false" aria-label="Basculer thème sombre">
         <span class="moon">🌙</span>
       </button>
     </div>
   </div>
 </header>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+  const mainNav = document.getElementById('main-nav');
+  
+  if (mobileMenuToggle && mainNav) {
+    mobileMenuToggle.addEventListener('click', function() {
+      mainNav.classList.toggle('open');
+      mobileMenuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
+    });
+    
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        mainNav.classList.remove('open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+});
+</script>

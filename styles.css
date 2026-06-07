@@ -169,20 +169,95 @@ html.dark body{background:var(--bg);color:var(--text)}
 .contact-form button:hover{opacity:0.95;box-shadow:0 6px 18px rgba(11,110,246,0.15)}
 
 /* Footer */
-.site-footer{margin-top:28px;padding:16px 0;text-align:center;color:var(--muted);font-size:0.9rem;border-top:1px solid rgba(12,34,60,0.04)}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.socials a{margin-left:10px;color:var(--muted);text-decoration:none}
+.site-footer{margin-top:40px;padding:32px 0 16px;color:var(--muted);font-size:0.9rem;border-top:1px solid rgba(12,34,60,0.08);background:var(--card)}
+.footer-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:24px}
+.footer-section h3{margin:0 0 12px;font-size:1rem;color:var(--text);font-weight:700}
+.footer-section h4{margin:0 0 10px;font-size:0.95rem;color:var(--text);font-weight:600}
+.footer-text{margin:0 0 8px;line-height:1.4;color:var(--muted)}
+.footer-links{list-style:none;margin:0;padding:0}
+.footer-links li{margin:6px 0}
+.footer-links a{color:var(--muted);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--accent)}
+.footer-section .socials{margin:0}
+.footer-section .socials a{color:var(--muted);text-decoration:none;display:inline-block;margin:0 10px 0 0;padding:0;border:none}
+.footer-section .socials a:hover{color:var(--accent)}
+.footer-bottom{text-align:center;padding-top:16px;border-top:1px solid rgba(12,34,60,0.08);color:var(--muted)}
+.footer-bottom p{margin:0}
+
+/* Mobile menu toggle */
+.mobile-menu-toggle{display:none;background:transparent;border:none;cursor:pointer;padding:6px;z-index:90}
+.hamburger{display:flex;flex-direction:column;gap:5px}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:1px;transition:all .3s}
+.main-nav.open .hamburger span:nth-child(1){transform:rotate(45deg) translateY(10px)}
+.main-nav.open .hamburger span:nth-child(2){opacity:0}
+.main-nav.open .hamburger span:nth-child(3){transform:rotate(-45deg) translateY(-10px)}
+
+/* CTA button styling */
+.btn.cta-btn{background:#fff;color:var(--accent);font-weight:700;padding:10px 14px}
+.btn.cta-btn:hover{background:rgba(255,255,255,0.95);box-shadow:0 4px 12px rgba(11,110,246,0.15)}
 
 /* Responsive */
 @media (max-width:880px){
   .hero-inner{flex-direction:column;align-items:flex-start}
-  .footer-inner{flex-direction:column;text-align:center}
+  .footer-inner{grid-template-columns:repeat(2,1fr);gap:20px}
 }
 
+/* Services Overview Styles */
+.services-overview{padding:48px 0;background:linear-gradient(180deg,transparent,rgba(11,110,246,0.03))}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:28px}
+.service-card{background:var(--card);padding:28px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,32,0.04);transition:transform .3s ease,box-shadow .3s ease;border:1px solid rgba(11,110,246,0.05)}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 12px 36px rgba(11,110,246,0.1)}
+.service-icon{font-size:3rem;margin-bottom:12px}
+.service-card h3{margin:0 0 12px;font-size:1.2rem;color:var(--text)}
+.service-card p{color:var(--muted);line-height:1.6;margin:0 0 16px}
+.service-link{color:var(--accent);text-decoration:none;font-weight:600;transition:opacity .2s;display:inline-block}
+.service-link:hover{opacity:0.8}
+
+/* Portfolio Preview Styles */
+.portfolio-preview{padding:48px 0;background:transparent}
+.section-title{font-size:2rem;margin:0 0 32px;text-align:center;color:var(--text)}
+.section-title::after{content:"";display:block;width:60px;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent-2));margin:16px auto 0;border-radius:2px}
+
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+/* Why Choose Us Styles */
+.why-choose{padding:48px 0;background:linear-gradient(180deg,rgba(11,110,246,0.03),transparent)}
+.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:28px}
+.benefit-card{background:var(--card);padding:24px;border-radius:12px;text-align:center;box-shadow:0 4px 12px rgba(15,23,32,0.04);border:1px solid rgba(11,110,246,0.05)}
+.benefit-card:hover{box-shadow:0 8px 20px rgba(11,110,246,0.08)}
+.benefit-icon{font-size:2.5rem;margin-bottom:12px;display:block}
+.benefit-card h3{margin:0 0 12px;font-size:1.1rem;color:var(--text)}
+.benefit-card p{color:var(--muted);line-height:1.6;margin:0;font-size:0.95rem}
+
+/* Main CTA Section Styles */
+.main-cta{padding:60px 0;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);color:#fff}
+.cta-inner{text-align:center}
+.cta-content h2{margin:0 0 12px;font-size:2rem;color:#fff}
+.cta-content p{margin:0 0 24px;font-size:1.1rem;opacity:0.95;line-height:1.5}
+.btn.large{padding:14px 28px;font-size:1rem}
+.btn.primary.large{background:#fff;color:var(--accent);box-shadow:0 10px 30px rgba(0,0,0,0.2)}
+.btn.primary.large:hover{background:rgba(255,255,255,0.95)}
+
 @media (max-width:720px){
-  .header-inner{flex-direction:column;gap:10px;text-align:center}
+  .header-inner{flex-direction:row;gap:10px;justify-content:space-between}
+  .brand{text-align:left}
+  .brand h1{font-size:1.1rem}
+  .subtitle{font-size:0.8rem}
+  .mobile-menu-toggle{display:block}
+  .main-nav{position:absolute;top:100%;left:0;right:0;background:linear-gradient(90deg,var(--accent) 0%,var(--accent-2) 100%);flex-direction:column;gap:0;flex-wrap:nowrap;justify-content:flex-start;padding:12px;max-height:0;overflow:hidden;transition:max-height .3s ease;z-index:80}
+  .main-nav.open{max-height:300px;padding:12px}
+  .main-nav a{display:block;padding:12px;margin:0;border-bottom:1px solid rgba(255,255,255,0.1)}
+  .main-nav a:last-child{border-bottom:none}
+  .header-actions{gap:8px}
+  .btn.small{padding:8px 10px;font-size:0.85rem}
   .passions-grid{grid-template-columns:1fr}
-  .main-nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
   .hero-text h2{font-size:1.2rem}
+  .footer-inner{grid-template-columns:1fr;gap:16px}
+  .footer-bottom{text-align:center}
+  .section-title{font-size:1.6rem}
+  .main-cta{padding:40px 0}
+  .cta-content h2{font-size:1.5rem}
+  .cta-content p{font-size:1rem}
+  .services-grid, .benefits-grid{grid-template-columns:1fr}
 }
 
