@@ -59,14 +59,30 @@
              ----------------------------------------------------
              ⚠️ Les attributs id des champs (name, email, phone,
              project-type, budget, message, terms) sont utilisés
-             par main.js et server.js : ne les renommez pas sans
-             mettre à jour ces deux fichiers !
+             par main.js : ne les renommez pas sans mettre à jour
+             main.js également.
+
+             FORMULAIRE NETLIFY :
+             - name="contact" + data-netlify="true" : Netlify détecte
+               le formulaire au déploiement et collecte les réponses
+               (visibles dans l'onglet « Forms » de votre tableau de bord).
+             - le champ caché "form-name" est obligatoire pour Netlify.
+             - "bot-field" est un piège anti-spam (honeypot) : invisible
+               pour les humains, mais les robots le remplissent et sont
+               alors automatiquement écartés.
              ==================================================== -->
         <div class="carte apparition">
           <h2>Demander un devis gratuit</h2>
           <p class="texte-doux">Les champs marqués d'une étoile (*) sont obligatoires.</p>
 
-          <form id="formulaire-contact" class="formulaire-contact">
+          <form id="formulaire-contact" class="formulaire-contact"
+                name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+
+            <!-- Champs techniques requis par Netlify Forms -->
+            <input type="hidden" name="form-name" value="contact">
+            <p hidden>
+              <label>Ne remplissez pas ceci : <input name="bot-field"></label>
+            </p>
 
             <div class="champ">
               <label for="name">Votre nom *</label>

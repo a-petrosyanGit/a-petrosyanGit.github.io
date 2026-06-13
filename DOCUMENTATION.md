@@ -61,9 +61,9 @@ ses écouteurs (sinon le menu n'existerait pas encore !).
 3. **Animations d'apparition** : `IntersectionObserver` ajoute `.est-visible`
    aux éléments `.apparition` quand ils entrent dans l'écran
 4. **FAQ accordéon** : bascule `.ouverte` sur les `.faq-item`
-5. **Formulaire** : validation + envoi vers `URL_ENVOI_FORMULAIRE`
-   (constante en haut de la section : `/send-email` pour `server.js` en local,
-   ou une adresse Formspree pour un hébergement statique)
+5. **Formulaire** : validation puis envoi vers **Netlify Forms**
+   (POST `url-encoded` vers `/`, via `FormData`). Fonctionne uniquement sur
+   le site déployé sur Netlify ; les réponses arrivent dans l'onglet « Forms »
 6. **Année automatique** dans le footer (`#annee-actuelle`)
 
 ### styles.css — le design
@@ -75,17 +75,21 @@ ses écouteurs (sinon le menu n'existerait pas encore !).
 - Accessibilité : `prefers-reduced-motion` respecté, `:focus-visible` stylé,
   lien d'évitement `.lien-evitement`
 
-### server.js — l'envoi d'email (optionnel)
+### Le formulaire — Netlify Forms
 
-Petit serveur Express qui sert les fichiers statiques et expose la route
-`POST /send-email` (Nodemailer + Gmail). Pour l'activer :
+Une fois le site déployé sur Netlify, le formulaire de devis est pris en
+charge par **Netlify Forms**, sans aucun serveur :
 
-1. `npm install`
-2. Renseigner un **mot de passe d'application Google** dans `server.js`
-3. `npm start` → http://localhost:3000
+- `contact.html` : le `<form>` porte `name="contact"` + `data-netlify="true"`,
+  un champ caché `form-name` et un piège anti-spam `bot-field` (honeypot).
+- `main.js` : à la soumission, les champs sont envoyés (`FormData` →
+  `url-encoded`) en POST vers `/`. Netlify intercepte et enregistre la réponse.
+- Les demandes apparaissent dans l'onglet **Forms** du tableau de bord Netlify
+  (pensez à activer les notifications par email).
 
-Sans ce serveur, le site fonctionne entièrement, sauf l'envoi réel du
-formulaire (un message d'erreur aimable s'affiche).
+> `server.js` (Express + Nodemailer) est un **reliquat optionnel** : il n'est
+> plus utilisé avec Netlify Forms et peut être supprimé pour un projet 100 %
+> statique. Il reste là si vous préférez un jour héberger une version Node.
 
 ---
 
@@ -128,7 +132,9 @@ formulaire (un message d'erreur aimable s'affiche).
 
 - **Formulaire** : les `id` des champs (`name`, `email`, `phone`,
   `project-type`, `budget`, `message`, `terms`) sont partagés entre
-  `contact.html`, `main.js` et `server.js`. Ne pas renommer l'un sans les autres.
+  `contact.html` et `main.js`. Ne pas renommer l'un sans l'autre. Le nom du
+  formulaire (`name="contact"` + champ caché `form-name`) ne doit pas changer
+  non plus, sinon Netlify ne reconnaîtra plus le formulaire.
 - **Polices** : chargées depuis Google Fonts (Fraunces + Nunito). Pour un site
   100 % hors-ligne, télécharger les fichiers de polices et les servir localement.
 - **Images** : préférer le format `.webp` et toujours renseigner l'attribut `alt`.

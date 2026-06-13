@@ -26,8 +26,13 @@ boutiques en ligne, refontes et maintenance.
 ├── sitemap.xml             # Plan du site pour Google (⚠️ remplacer le domaine)
 ├── robots.txt              # Instructions pour les moteurs de recherche
 ├── og-image.png            # Image affichée lors d'un partage sur les réseaux
-└── server.js               # Petit serveur Node pour l'envoi d'email (optionnel)
+├── netlify.toml            # Config de déploiement Netlify (site statique)
+└── server.js               # Serveur Node legacy (non utilisé avec Netlify Forms)
 ```
+
+> Le formulaire de devis utilise **Netlify Forms** une fois le site déployé :
+> aucun serveur ni service tiers à configurer. `server.js` n'est donc plus
+> nécessaire (vous pouvez le supprimer pour un projet 100 % statique).
 
 ## L'identité visuelle (palette Bourgogne)
 
@@ -56,17 +61,9 @@ python -m http.server 8000
 
 Puis ouvrez [http://localhost:8000](http://localhost:8000)
 
-### Option 2 : Node.js (avec le formulaire d'email fonctionnel)
-
-```bash
-npm install
-npm start
-```
-
-Puis ouvrez [http://localhost:3000](http://localhost:3000)
-
-> Pour que l'envoi d'email fonctionne, renseignez un mot de passe d'application
-> Google dans `server.js` (variable `pass`).
+> ℹ️ En local, le **formulaire de devis** ne peut pas aboutir (Netlify Forms
+> n'existe que sur le site déployé) : un message d'erreur s'affiche, c'est
+> normal. Tout le reste du site fonctionne parfaitement en local.
 
 ### Option 3 : VS Code (Live Server)
 
@@ -102,12 +99,13 @@ et `robots.txt`.
 `[À COMPLÉTER]` (nom du responsable, statut, hébergeur). **Obligatoire en
 France avant la mise en ligne** (loi LCEN + RGPD).
 
-### 4. Brancher le formulaire (hébergement statique)
+### 4. Le formulaire (rien à faire !)
 
-Sur Netlify/GitHub Pages, il n'y a pas de serveur Node pour `/send-email`.
-Créez un formulaire gratuit sur [formspree.io](https://formspree.io) et
-collez son adresse dans la constante `URL_ENVOI_FORMULAIRE` en haut de la
-section formulaire de `main.js`. C'est le seul changement nécessaire.
+Le formulaire de devis est déjà configuré pour **Netlify Forms** (voir
+`contact.html` et `main.js`). Une fois le site déployé sur Netlify, les
+demandes arriveront automatiquement dans l'onglet **Forms** de votre tableau
+de bord Netlify — pensez à y activer les notifications par email
+(Site settings → Forms → Form notifications) pour être prévenu à chaque devis.
 
 ### 5. Mettre en ligne sur Netlify (recommandé)
 

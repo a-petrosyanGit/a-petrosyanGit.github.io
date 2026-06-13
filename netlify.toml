@@ -1,0 +1,16 @@
+# ============================================================
+# netlify.toml — configuration du déploiement Netlify
+# ------------------------------------------------------------
+# Notre site est 100 % statique (HTML/CSS/JS) : il n'y a rien à
+# « construire ». On dit donc à Netlify de publier le dossier tel
+# quel, à la racine du dépôt.
+#
+# (Sans ce fichier, Netlify pourrait voir le package.json et tenter
+# de lancer un build qui n'existe pas. On évite ça ici.)
+# ============================================================
+
+[build]
+  # Dossier à mettre en ligne = la racine du dépôt
+  publish = "."
+  # Aucune commande de build à exécuter
+  command = ""

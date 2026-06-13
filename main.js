@@ -119,20 +119,13 @@ function initialiserSite() {
      5. FORMULAIRE DE CONTACT
      ----------------------------------------------------------
      - On vérifie que les champs obligatoires sont remplis
-     - On envoie les données au serveur (route /send-email,
-       voir server.js)
+     - On envoie les données à Netlify Forms (POST vers "/")
      - On affiche un message de succès ou d'erreur
-     ---------------------------------------------------------- */
-  // Adresse à laquelle le formulaire envoie les données.
-  //
-  // → En local avec server.js (npm start) : laissez '/send-email'.
-  // → Sur un hébergement statique (Netlify, GitHub Pages, Vercel...),
-  //   il n'y a pas de serveur Node ! Créez un formulaire gratuit sur
-  //   https://formspree.io puis remplacez la valeur ci-dessous par
-  //   votre adresse, par exemple : 'https://formspree.io/f/abcdwxyz'
-  //   (rien d'autre à changer, le reste du code est compatible).
-  const URL_ENVOI_FORMULAIRE = '/send-email';
 
+     ⚠️ L'envoi ne fonctionne QUE sur le site déployé sur Netlify.
+     En local (python / Live Server), il n'y a pas de Netlify pour
+     recevoir le POST : le message d'erreur s'affichera, c'est normal.
+     ---------------------------------------------------------- */
   const formulaire = document.getElementById('formulaire-contact');
 
   if (formulaire) {
@@ -148,12 +141,10 @@ function initialiserSite() {
         zoneMessage.className = 'message-formulaire ' + type; // "succes" ou "erreur"
       }
 
-      // --- Récupération des valeurs des champs ---
+      // --- Récupération des champs à valider ---
+      // (les autres champs sont envoyés directement via FormData plus bas)
       const nom = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
-      const telephone = document.getElementById('phone').value.trim();
-      const typeProjet = document.getElementById('project-type').value;
-      const budget = document.getElementById('budget').value;
       const message = document.getElementById('message').value.trim();
       const conditions = document.getElementById('terms').checked;
 
@@ -168,22 +159,16 @@ function initialiserSite() {
         return;
       }
 
-      // --- Préparation des données à envoyer au serveur ---
-      // Les noms de propriétés (name, email...) doivent correspondre
-      // à ce que server.js attend de recevoir.
-      const donnees = { name: nom, email: email, message: message };
-      if (telephone) donnees.phone = telephone;
-      if (typeProjet) donnees.projectType = typeProjet;
-      if (budget) donnees.budget = budget;
-
-      // --- Envoi ---
+      // --- Envoi vers Netlify Forms ---
+      // FormData récupère automatiquement tous les champs du formulaire
+      // (grâce à leur attribut "name"), y compris le champ caché
+      // "form-name" requis par Netlify. On convertit ensuite en
+      // "url-encoded", le format attendu par Netlify Forms.
       try {
-        const reponse = await fetch(URL_ENVOI_FORMULAIRE, {
+        const reponse = await fetch('/', {
           method: 'POST',
-          // L'en-tête "Accept" est nécessaire pour Formspree
-          // (et ne gêne pas server.js)
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(donnees)
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(formulaire)).toString()
         });
 
         if (reponse.ok) {
