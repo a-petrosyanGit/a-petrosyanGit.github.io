@@ -26,7 +26,7 @@ Le site comprend 5 pages :
 Fichiers de référencement : `sitemap.xml`, `robots.txt`, `og-image.png`
 (image de partage social) + balises canonical/Open Graph dans chaque `<head>`
 et données structurées JSON-LD dans `index.html`.
-**Le domaine `codeetchouette.fr` y figure en placeholder** — voir la checklist
+**Le domaine `codenchouette.fr` y figure en placeholder** — voir la checklist
 de déploiement du README.
 
 ---

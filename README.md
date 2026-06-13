@@ -80,26 +80,18 @@ Clic droit sur `index.html` → « Open with Live Server »
 
 ## 🚀 Déploiement (checklist dans l'ordre)
 
-### 1. Acheter le nom de domaine
+### 1. Nom de domaine ✅
 
-`codeetchouette.fr` (ou autre) chez OVH, Gandi ou Infomaniak (~10 €/an).
-Une adresse en `.netlify.app` ou `.github.io` nuit à la crédibilité ET au
-référencement — pour une agence web, le domaine propre est indispensable.
+Domaine : **`codenchouette.fr`** (acheté chez IONOS). Les URL du code
+(canonical, Open Graph, `sitemap.xml`, `robots.txt`) pointent déjà dessus.
 
-### 2. Remplacer le domaine partout dans le code
-
-Le code contient `codeetchouette.fr` en **placeholder**. Faites un
-rechercher-remplacer global avec votre vrai domaine. Fichiers concernés :
-les balises `<head>` des pages HTML (canonical, Open Graph), `sitemap.xml`
-et `robots.txt`.
-
-### 3. Compléter les pages légales
+### 2. Compléter les pages légales
 
 `mentions-legales.html` et `confidentialite.html` contiennent des
 `[À COMPLÉTER]` (nom du responsable, statut, hébergeur). **Obligatoire en
 France avant la mise en ligne** (loi LCEN + RGPD).
 
-### 4. Le formulaire (rien à faire !)
+### 3. Le formulaire (rien à faire !)
 
 Le formulaire de devis est déjà configuré pour **Netlify Forms** (voir
 `contact.html` et `main.js`). Une fois le site déployé sur Netlify, les
@@ -107,15 +99,27 @@ demandes arriveront automatiquement dans l'onglet **Forms** de votre tableau
 de bord Netlify — pensez à y activer les notifications par email
 (Site settings → Forms → Form notifications) pour être prévenu à chaque devis.
 
-### 5. Mettre en ligne sur Netlify (recommandé)
+### 4. Mettre en ligne sur Netlify
 
-1. Poussez le code sur GitHub
+1. Poussez le code sur GitHub (branche `main`)
 2. Sur [netlify.com](https://netlify.com) : « Add new site » → « Import an
-   existing project » → choisissez le dépôt → Deploy (aucun réglage à changer)
-3. Dans « Domain settings », ajoutez votre nom de domaine ; le HTTPS est
-   automatique
+   existing project » → choisissez le dépôt `testHTMLcss` → Deploy
+   (aucun réglage à changer grâce à `netlify.toml`)
+3. Dans « Domain management », ajoutez `codenchouette.fr` puis configurez
+   le DNS chez IONOS (voir ci-dessous) ; le HTTPS est automatique
 
-Chaque `git push` redéploiera le site tout seul. ✨
+Chaque `git push` sur `main` redéploiera le site tout seul. ✨
+
+### 5. Connecter le domaine IONOS
+
+Dans l'espace IONOS (Domaines → `codenchouette.fr` → DNS), pointez le domaine
+vers Netlify selon la méthode indiquée par Netlify :
+- **Domaine racine** `codenchouette.fr` → enregistrement **A** vers l'IP de
+  Netlify (`75.2.60.5`)
+- **`www`** → enregistrement **CNAME** vers votre adresse `xxxxx.netlify.app`
+
+Comptez de quelques minutes à 48 h de propagation, puis activez **Force HTTPS**
+dans Netlify.
 
 ### 6. Activer la visibilité Google
 
