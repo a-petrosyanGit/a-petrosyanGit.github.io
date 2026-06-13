@@ -1,50 +1,44 @@
-<header class="site-header">
-  <div class="container header-inner">
-    <div class="brand">
-      <a href="index.html"><h1>PETROSYAN</h1></a>
-      <p class="subtitle">Agence Web — Dijon</p>
-    </div>
-    <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Menu mobile" aria-expanded="false">
-      <span class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
+<!-- ============================================================
+     EN-TÊTE DU SITE — Code & Chouette
+     ------------------------------------------------------------
+     Ce fragment est injecté sur chaque page par include-html.js.
+     ATTENTION : ne mettez pas de <script> ici ! Les scripts
+     injectés via innerHTML ne sont jamais exécutés par le
+     navigateur. Toute la logique (menu burger, lien actif...)
+     se trouve dans main.js.
+     ============================================================ -->
+<header class="entete-site">
+  <div class="conteneur entete-interieur">
+
+    <!-- Logo : la chouette + le nom de l'agence -->
+    <a class="logo" href="index.html" aria-label="Code et Chouette — retour à l'accueil">
+      <span class="logo-icone" aria-hidden="true">🦉</span>
+      <span class="logo-texte">
+        Code <span class="logo-et">&amp;</span> Chouette
+        <span class="logo-slogan">Sites web — Dijon</span>
       </span>
+    </a>
+
+    <!-- Bouton burger : visible uniquement sur mobile.
+         main.js s'occupe d'ouvrir/fermer le menu. -->
+    <button id="bouton-menu" class="bouton-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navigation-principale">
+      <span class="barre"></span>
+      <span class="barre"></span>
+      <span class="barre"></span>
     </button>
-    <nav class="main-nav" id="main-nav">
+
+    <!-- Navigation principale.
+         main.js ajoute la classe .lien-actif sur la page en cours. -->
+    <nav class="navigation-principale" id="navigation-principale" aria-label="Navigation principale">
       <a href="index.html">Accueil</a>
-      <a href="services.html">Services</a>
-      <a href="projects.html">Portfolio</a>
-      <a href="pricing.html">Tarifs</a>
-      <a href="about.html">À propos</a>
+      <a href="services.html">Nos services</a>
+      <a href="pricing.html">Nos tarifs</a>
+      <a href="about.html">Qui sommes-nous&nbsp;?</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <div class="header-actions">
-      <a class="btn small cta-btn" href="contact.html">Demander un devis</a>
-      <button id="theme-toggle" class="icon-btn" aria-pressed="false" aria-label="Basculer thème sombre">
-        <span class="moon">🌙</span>
-      </button>
-    </div>
+
+    <!-- Bouton d'appel à l'action (masqué sur mobile, voir CSS) -->
+    <a class="bouton bouton-principal entete-cta" href="contact.html">Devis gratuit</a>
+
   </div>
 </header>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-  const mainNav = document.getElementById('main-nav');
-  
-  if (mobileMenuToggle && mainNav) {
-    mobileMenuToggle.addEventListener('click', function() {
-      mainNav.classList.toggle('open');
-      mobileMenuToggle.setAttribute('aria-expanded', mainNav.classList.contains('open'));
-    });
-    
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function() {
-        mainNav.classList.remove('open');
-        mobileMenuToggle.setAttribute('aria-expanded', 'false');
-      });
-    });
-  }
-});
-</script>

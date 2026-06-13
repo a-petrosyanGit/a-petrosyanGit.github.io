@@ -1,7 +1,7 @@
 {
-  "name": "portfolio",
-  "version": "1.0.0",
-  "description": "Portfolio avec formulaire de contact",
+  "name": "code-et-chouette",
+  "version": "2.0.0",
+  "description": "Site de l'agence web Code & Chouette (Dijon) — avec formulaire de devis par email",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

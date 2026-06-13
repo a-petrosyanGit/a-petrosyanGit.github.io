@@ -1,263 +1,1373 @@
-/* styles.css - version améliorée pour portfolio */
+/* ============================================================
+   STYLES.CSS — Code & Chouette 🦉
+   ------------------------------------------------------------
+   Feuille de style unique du site, écrite en "Mobile-First" :
+   les styles de base ciblent les petits écrans, puis les
+   media queries `@media (min-width: ...)` adaptent la mise en
+   page pour les tablettes et les ordinateurs.
 
-:root{
-  --bg:#f6f9ff;
-  --card:#ffffff;
-  --accent:#0b6ef6;
-  --accent-2:#4aa3ff;
-  --muted:#6b7280;
-  --text:#0f1720;
+   SOMMAIRE :
+   1.  Variables (couleurs, polices, rayons, ombres)
+   2.  Reset & styles de base
+   3.  Utilitaires (conteneur, sections, titres)
+   4.  Boutons
+   5.  En-tête & navigation
+   6.  Héros (bandeau d'accueil)
+   7.  Bandeau de confiance (chiffres clés)
+   8.  Cartes génériques (services, valeurs, infos...)
+   9.  Listes à coches
+   10. Étapes (notre façon de travailler)
+   11. Encart "chouette" (clin d'œil local)
+   12. Tarifs
+   13. FAQ (accordéon)
+   14. Formulaire de contact
+   15. Appel à l'action final
+   16. Pied de page
+   17. Animations d'apparition
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIABLES
+   ------------------------------------------------------------
+   Toutes les couleurs et valeurs réutilisées sont définies ici.
+   Pour changer l'ambiance du site, c'est LE bon endroit.
+   Palette inspirée de la Bourgogne :
+   - Jaune moutarde : chaleureux et dynamique
+   - Cassis/Bordeaux : élégant et professionnel
+   - Blanc cassé : fond doux et accueillant
+   ============================================================ */
+:root {
+  /* --- Couleurs principales --- */
+  --couleur-fond: #FBF7EF;            /* Blanc cassé, fond général du site */
+  --couleur-carte: #FFFFFF;           /* Fond des cartes et encarts */
+  --couleur-moutarde: #E0A526;        /* Jaune moutarde : accents, boutons */
+  --couleur-moutarde-doux: #F7E8C3;   /* Moutarde très clair : fonds discrets */
+  --couleur-cassis: #6B2143;          /* Cassis/Bordeaux : titres, en-tête */
+  --couleur-cassis-fonce: #4D1730;    /* Cassis foncé : survols, pied de page */
+  --couleur-cassis-doux: #F4E7ED;     /* Cassis très clair : fonds discrets */
+
+  /* --- Couleurs de texte --- */
+  --couleur-encre: #3A2230;           /* Texte principal (presque noir, teinté cassis) */
+  --couleur-texte-doux: #6F5E68;      /* Texte secondaire (descriptions, légendes) */
+
+  /* --- Polices --- */
+  --police-titres: 'Fraunces', Georgia, serif;        /* Titres : chaleureuse, avec du caractère */
+  --police-texte: 'Nunito', system-ui, sans-serif;    /* Texte courant : ronde et lisible */
+
+  /* --- Formes & ombres --- */
+  --rayon-carte: 18px;                            /* Bords arrondis des cartes */
+  --rayon-bouton: 999px;                          /* Boutons en forme de "pilule" */
+  --ombre-douce: 0 6px 24px rgba(77, 23, 48, 0.07);   /* Ombre légère par défaut */
+  --ombre-survol: 0 14px 34px rgba(77, 23, 48, 0.13); /* Ombre plus marquée au survol */
 }
 
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;color:var(--text);background:var(--bg);scroll-behavior:smooth}
 
-.container{max-width:1100px;margin:0 auto;padding:28px}
+/* ============================================================
+   2. RESET & STYLES DE BASE
+   ============================================================ */
 
-/* Header */
-.site-header{background:linear-gradient(90deg,var(--accent) 0%,var(--accent-2) 100%);color:#fff}
-.header-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
-.brand h1{text-decoration:none;color:#fff;margin:0;font-size:1.2rem;font-weight:800}
-.subtitle{margin:4px 0 0;font-size:0.85rem;opacity:0.95}
-.main-nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:600}
-.main-nav a:hover{text-decoration: none;opacity:0.95}
+/* Le padding et les bordures sont comptés DANS la largeur des éléments */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-/* Supprime l'animation du trait uniquement pour le nom dans le header,
-garde le nom totalement blanc */
-.brand a {
-  opacity: 1;
+html {
+  /* Défilement fluide quand on clique sur un lien d'ancre (#section) */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--police-texte);
+  font-size: 1rem;
+  line-height: 1.7;                 /* Texte aéré, agréable à lire */
+  color: var(--couleur-encre);
+  background-color: var(--couleur-fond);
+  /* Évite que le texte soit microscopique sur certains mobiles */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Les titres utilisent la police "à caractère" */
+h1, h2, h3, h4 {
+  font-family: var(--police-titres);
+  color: var(--couleur-encre);
+  line-height: 1.25;
+}
+
+/* Les images ne débordent jamais de leur conteneur */
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Liens : couleur cassis par défaut */
+a {
+  color: var(--couleur-cassis);
+}
+
+/* Contour visible au clavier (accessibilité) : on le garde bien net */
+:focus-visible {
+  outline: 3px solid var(--couleur-moutarde);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Lien d'évitement : invisible, sauf quand on navigue au clavier (touche Tab).
+   Il permet aux lecteurs d'écran de sauter directement au contenu. */
+.lien-evitement {
+  position: absolute;
+  left: -9999px;
+  background: var(--couleur-cassis);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 8px;
+  z-index: 200;
+}
+.lien-evitement:focus {
+  left: 12px;
+  top: 12px;
+}
+
+
+/* ============================================================
+   3. UTILITAIRES (conteneur, sections, titres)
+   ============================================================ */
+
+/* Le conteneur centre le contenu et limite sa largeur sur grand écran */
+.conteneur {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Espacement vertical généreux entre les grandes sections */
+.section {
+  padding: 56px 0;
+}
+
+/* Variante avec un léger fond moutarde pour alterner les ambiances */
+.section-douce {
+  background-color: var(--couleur-moutarde-doux);
+}
+
+/* Variante avec un léger fond cassis */
+.section-cassis {
+  background-color: var(--couleur-cassis-doux);
+}
+
+/* Titre principal d'une section */
+.titre-section {
+  font-size: 1.7rem;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+/* Petit trait moutarde décoratif sous les titres de section */
+.titre-section::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--couleur-moutarde);
+  margin: 14px auto 0;
+}
+
+/* Phrase d'introduction sous le titre de section */
+.sous-titre-section {
+  text-align: center;
+  color: var(--couleur-texte-doux);
+  max-width: 640px;
+  margin: 0 auto 40px;
+}
+
+/* Texte secondaire réutilisable */
+.texte-doux {
+  color: var(--couleur-texte-doux);
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 80px 0;
+  }
+  .titre-section {
+    font-size: 2.1rem;
+  }
+}
+
+
+/* ============================================================
+   4. BOUTONS
+   ------------------------------------------------------------
+   Deux styles :
+   - .bouton-principal : moutarde, pour l'action la plus importante
+   - .bouton-secondaire : contour cassis, pour l'action alternative
+   ============================================================ */
+.bouton {
+  display: inline-block;
+  padding: 13px 26px;
+  border-radius: var(--rayon-bouton);
+  font-family: var(--police-texte);
+  font-weight: 800;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+/* Léger "saut" au survol, commun à tous les boutons */
+.bouton:hover {
+  transform: translateY(-2px);
+}
+
+.bouton-principal {
+  background-color: var(--couleur-moutarde);
+  color: var(--couleur-encre);
+  box-shadow: 0 6px 18px rgba(224, 165, 38, 0.35);
+}
+.bouton-principal:hover {
+  background-color: #C99217; /* Moutarde un peu plus foncée */
+  box-shadow: 0 10px 24px rgba(224, 165, 38, 0.45);
+}
+
+.bouton-secondaire {
+  background-color: transparent;
+  color: var(--couleur-cassis);
+  border-color: var(--couleur-cassis);
+}
+.bouton-secondaire:hover {
+  background-color: var(--couleur-cassis);
+  color: #fff;
+}
+
+/* Version plus imposante pour les grands appels à l'action */
+.bouton-grand {
+  padding: 16px 34px;
+  font-size: 1.05rem;
+}
+
+
+/* ============================================================
+   5. EN-TÊTE & NAVIGATION
+   ------------------------------------------------------------
+   Sur mobile : logo + bouton "burger" qui déplie le menu.
+   Sur ordinateur : logo + liens alignés + bouton devis.
+   ============================================================ */
+.entete-site {
+  background-color: var(--couleur-cassis);
+  color: #fff;
+  position: sticky;   /* L'en-tête reste collé en haut quand on défile */
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 14px rgba(77, 23, 48, 0.25);
+}
+
+.entete-interieur {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  position: relative;  /* Sert de repère pour positionner le menu mobile */
+}
+
+/* --- Logo --- */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #fff;
+}
+
+.logo-icone {
+  font-size: 1.7rem;
+  /* Petit cercle moutarde derrière la chouette */
+  background: var(--couleur-moutarde);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logo-texte {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: 1.15rem;
+  line-height: 1.1;
+}
+
+/* Le "&" du logo en moutarde, pour le clin d'œil graphique */
+.logo-et {
+  color: var(--couleur-moutarde);
+}
+
+.logo-slogan {
+  display: block;
+  font-family: var(--police-texte);
+  font-size: 0.72rem;
+  font-weight: 600;
+  opacity: 0.85;
+}
+
+/* --- Bouton burger (mobile uniquement) --- */
+.bouton-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+/* Les 3 barres du burger */
+.bouton-menu .barre {
+  display: block;
+  width: 26px;
+  height: 3px;
+  border-radius: 3px;
+  background-color: #fff;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Quand le menu est ouvert, le burger se transforme en croix */
+.bouton-menu[aria-expanded="true"] .barre:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.bouton-menu[aria-expanded="true"] .barre:nth-child(2) {
+  opacity: 0;
+}
+.bouton-menu[aria-expanded="true"] .barre:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- Navigation --- */
+.navigation-principale {
+  /* Sur mobile : panneau déroulant sous l'en-tête, fermé par défaut */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: var(--couleur-cassis-fonce);
+  display: flex;
+  flex-direction: column;
+  max-height: 0;          /* Fermé : hauteur nulle */
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+/* Classe ajoutée/retirée par main.js au clic sur le burger */
+.navigation-principale.ouverte {
+  max-height: 420px;      /* Ouvert : assez de place pour tous les liens */
+}
+
+.navigation-principale a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navigation-principale a:hover {
+  background-color: rgba(224, 165, 38, 0.15);
+  color: var(--couleur-moutarde);
+}
+
+/* Lien de la page en cours (classe ajoutée par main.js) */
+.navigation-principale a.lien-actif {
+  color: var(--couleur-moutarde);
+}
+
+/* Le bouton devis de l'en-tête est masqué sur les très petits écrans
+   (il reste accessible dans le menu et partout dans les pages) */
+.entete-cta {
+  display: none;
+}
+
+/* --- Version ordinateur --- */
+@media (min-width: 900px) {
+  /* Plus besoin du burger */
+  .bouton-menu {
+    display: none;
+  }
+
+  /* La navigation redevient une simple ligne de liens */
+  .navigation-principale {
+    position: static;
+    flex-direction: row;
+    background: none;
+    max-height: none;
+    overflow: visible;
+    gap: 4px;
+  }
+
+  .navigation-principale a {
+    padding: 8px 12px;
+    border-bottom: none;
+    border-radius: 8px;
+    position: relative;
+  }
+
+  /* Petit soulignement moutarde animé au survol */
+  .navigation-principale a::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 2px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: var(--couleur-moutarde);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .navigation-principale a:hover::after,
+  .navigation-principale a.lien-actif::after {
+    transform: scaleX(1);
+  }
+
+  .navigation-principale a:hover {
+    background: none;
+  }
+
+  /* Le bouton devis réapparaît */
+  .entete-cta {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 0.92rem;
+  }
+}
+
+
+/* ============================================================
+   6. HÉROS (grand bandeau d'accueil)
+   ============================================================ */
+.heros {
+  padding: 64px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden; /* Les cercles décoratifs ne débordent pas */
+}
+
+/* Deux grandes "bulles" floues en décor, moutarde et cassis */
+.heros::before,
+.heros::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.25;
+  pointer-events: none; /* Elles ne gênent pas les clics */
+}
+.heros::before {
+  width: 320px;
+  height: 320px;
+  background: var(--couleur-moutarde);
+  top: -120px;
+  left: -100px;
+}
+.heros::after {
+  width: 280px;
+  height: 280px;
+  background: var(--couleur-cassis);
+  bottom: -120px;
+  right: -80px;
+}
+
+/* Le contenu passe au-dessus des bulles décoratives */
+.heros .conteneur {
+  position: relative;
+  z-index: 1;
+}
+
+/* Petite étiquette au-dessus du titre ("Les jeunes dévs du quartier") */
+.heros-badge {
+  display: inline-block;
+  background-color: var(--couleur-cassis-doux);
+  color: var(--couleur-cassis);
+  font-weight: 800;
+  font-size: 0.88rem;
+  padding: 8px 18px;
+  border-radius: 99px;
+  margin-bottom: 22px;
+}
+
+.heros-titre {
+  /* clamp(min, préféré, max) : la taille s'adapte à l'écran */
+  font-size: clamp(1.9rem, 5vw, 3.1rem);
+  margin: 0 0 18px;
+}
+
+/* Mot mis en valeur dans le titre */
+.heros-titre .accent {
+  color: var(--couleur-cassis);
+}
+
+.heros-texte {
+  font-size: 1.1rem;
+  color: var(--couleur-texte-doux);
+  max-width: 620px;
+  margin: 0 auto 32px;
+}
+
+/* Les boutons du héros : empilés sur mobile, côte à côte ensuite */
+.heros-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .heros-actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .heros {
+    padding: 96px 0;
+  }
+}
+
+
+/* ============================================================
+   7. BANDEAU DE CONFIANCE (chiffres clés sous le héros)
+   ============================================================ */
+.bandeau-confiance {
+  background-color: var(--couleur-cassis);
+  color: #fff;
+  padding: 28px 0;
+}
+
+.bandeau-confiance .conteneur {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* 2 colonnes sur mobile */
+  gap: 22px;
+  text-align: center;
+}
+
+.confiance-chiffre {
+  font-family: var(--police-titres);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--couleur-moutarde);
+}
+
+.confiance-libelle {
+  font-size: 0.88rem;
+  opacity: 0.9;
+}
+
+@media (min-width: 768px) {
+  .bandeau-confiance .conteneur {
+    grid-template-columns: repeat(4, 1fr);  /* 4 colonnes sur grand écran */
+  }
+}
+
+
+/* ============================================================
+   8. CARTES GÉNÉRIQUES
+   ------------------------------------------------------------
+   .grille-cartes : grille qui s'adapte toute seule au nombre
+   de cartes et à la largeur de l'écran (grâce à auto-fit).
+   ============================================================ */
+.grille-cartes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.carte {
+  background-color: var(--couleur-carte);
+  border-radius: var(--rayon-carte);
+  padding: 28px;
+  box-shadow: var(--ombre-douce);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* La carte se soulève doucement au survol */
+.carte:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--ombre-survol);
+}
+
+/* Icône (emoji) en haut de carte, dans une pastille moutarde claire */
+.carte-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  font-size: 1.7rem;
+  background-color: var(--couleur-moutarde-doux);
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+
+.carte h3 {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+}
+
+/* Titre un peu plus grand pour les cartes "service détaillé"
+   (page services.html, où chaque carte a son propre h2) */
+.carte h2 {
+  margin: 0 0 10px;
+  font-size: 1.45rem;
+}
+
+.carte p {
+  margin: 0;
+  color: var(--couleur-texte-doux);
+}
+
+/* Lien "En savoir plus" en bas de carte */
+.carte-lien {
+  display: inline-block;
+  margin-top: 14px;
+  color: var(--couleur-cassis);
+  font-weight: 800;
+  text-decoration: none;
+}
+.carte-lien:hover {
+  text-decoration: underline;
+}
+
+/* Rangée de boutons en bas d'une carte de service détaillée */
+.actions-service {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+/* Grille à deux colonnes maximum (page services) :
+   une colonne sur mobile, deux sur grand écran */
+.grille-deux {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 800px) {
+  .grille-deux {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Étiquette de prix dans les cartes de service */
+.carte-prix {
+  display: inline-block;
+  margin-top: 16px;
+  background-color: var(--couleur-cassis-doux);
+  color: var(--couleur-cassis);
+  font-weight: 800;
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  border-radius: 99px;
+}
+
+
+/* ============================================================
+   9. LISTES À COCHES (✓)
+   ============================================================ */
+.liste-coches {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+}
+
+.liste-coches li {
+  position: relative;
+  padding: 7px 0 7px 30px;
+}
+
+/* La coche moutarde devant chaque élément */
+.liste-coches li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--couleur-moutarde);
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+
+/* ============================================================
+   10. ÉTAPES (notre façon de travailler)
+   ============================================================ */
+.etapes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+  counter-reset: numero-etape;   /* Compteur CSS : numérote tout seul ! */
+}
+
+.etape {
+  background-color: var(--couleur-carte);
+  border-radius: var(--rayon-carte);
+  padding: 24px;
+  box-shadow: var(--ombre-douce);
+  counter-increment: numero-etape;  /* +1 à chaque étape */
+  position: relative;
+}
+
+/* Le numéro rond en haut de chaque étape, généré automatiquement */
+.etape::before {
+  content: counter(numero-etape);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--couleur-cassis);
+  color: var(--couleur-moutarde);
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+
+.etape h3 {
+  margin: 0 0 8px;
+  font-size: 1.08rem;
+}
+
+.etape p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--couleur-texte-doux);
+}
+
+@media (min-width: 600px) {
+  .etapes {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1000px) {
+  .etapes {
+    /* Sur grand écran, on aligne les 5 étapes (ou moins) sur une ligne */
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  }
+}
+
+
+/* ============================================================
+   11. ENCART "CHOUETTE" (clin d'œil local)
+   ============================================================ */
+.encart-chouette {
+  background-color: var(--couleur-carte);
+  border: 2px dashed var(--couleur-moutarde);  /* Bordure "carnet de notes" */
+  border-radius: var(--rayon-carte);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.encart-chouette .chouette-emoji {
+  font-size: 2.6rem;
+  line-height: 1;
+}
+
+.encart-chouette h3 {
+  margin: 0 0 8px;
+}
+
+.encart-chouette p {
+  margin: 0 0 10px;
+  color: var(--couleur-texte-doux);
+}
+
+@media (min-width: 700px) {
+  .encart-chouette {
+    flex-direction: row;
+    align-items: center;
+    gap: 28px;
+    padding: 36px;
+  }
+}
+
+
+/* ============================================================
+   12. TARIFS
+   ============================================================ */
+.grille-tarifs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+}
+
+.carte-tarif {
+  background-color: var(--couleur-carte);
+  border-radius: var(--rayon-carte);
+  box-shadow: var(--ombre-douce);
+  border: 2px solid transparent;
+  overflow: hidden;          /* Pour que le bandeau "préféré" suive l'arrondi */
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.carte-tarif:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--ombre-survol);
+}
+
+/* L'offre mise en avant a une bordure moutarde */
+.carte-tarif-vedette {
+  border-color: var(--couleur-moutarde);
+}
+
+/* Bandeau "Le préféré des commerçants" en haut de l'offre vedette */
+.badge-vedette {
+  background-color: var(--couleur-moutarde);
+  color: var(--couleur-encre);
+  text-align: center;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tarif-entete {
+  padding: 26px 26px 20px;
+  border-bottom: 1px solid var(--couleur-cassis-doux);
+}
+
+.tarif-entete h3 {
+  margin: 0 0 4px;
+  font-size: 1.35rem;
+}
+
+.tarif-sous-titre {
+  margin: 0;
+  color: var(--couleur-texte-doux);
+  font-size: 0.95rem;
+}
+
+.tarif-prix {
+  font-family: var(--police-titres);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--couleur-cassis);
+  margin: 14px 0 2px;
+}
+
+.tarif-duree {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--couleur-texte-doux);
+}
+
+/* Le corps de la carte s'étire pour aligner les boutons en bas */
+.tarif-corps {
+  padding: 22px 26px 26px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.tarif-corps .liste-coches {
+  margin: 0 0 22px;
+  flex-grow: 1;   /* Pousse le bouton tout en bas de la carte */
+}
+
+.tarif-corps .bouton {
+  width: 100%;
+}
+
+@media (min-width: 700px) {
+  .grille-tarifs {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1000px) {
+  .grille-tarifs {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* --- Bandeau maintenance ("Le Perchoir") --- */
+.bandeau-maintenance {
+  margin-top: 36px;
+  background-color: var(--couleur-cassis);
+  color: #fff;
+  border-radius: var(--rayon-carte);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bandeau-maintenance h3 {
+  color: #fff;
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+}
+
+.bandeau-maintenance p {
+  margin: 0;
+  opacity: 0.92;
+}
+
+.bandeau-maintenance .liste-coches {
+  margin: 14px 0 0;
+}
+
+.bandeau-maintenance .prix-maintenance {
+  font-family: var(--police-titres);
+  font-size: 2rem;
+  color: var(--couleur-moutarde);
+  white-space: nowrap;
+}
+
+@media (min-width: 800px) {
+  .bandeau-maintenance {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 36px;
+  }
+}
+
+/* --- Petites cartes d'options additionnelles --- */
+.grille-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.carte-option {
+  background-color: var(--couleur-carte);
+  border-radius: var(--rayon-carte);
+  border: 1px solid var(--couleur-moutarde-doux);
+  padding: 22px;
+  text-align: center;
+}
+
+.carte-option h4 {
+  margin: 0 0 6px;
+  font-size: 1.02rem;
+}
+
+.option-prix {
+  font-family: var(--police-titres);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--couleur-cassis);
+  margin: 8px 0;
+}
+
+.carte-option p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--couleur-texte-doux);
+}
+
+@media (min-width: 600px) {
+  .grille-options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1000px) {
+  .grille-options {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
+/* ============================================================
+   13. FAQ (accordéon)
+   ------------------------------------------------------------
+   Le JavaScript (main.js) ajoute/retire la classe .ouverte
+   sur .faq-item quand on clique sur la question.
+   ============================================================ */
+.faq {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background-color: var(--couleur-carte);
+  border-radius: var(--rayon-carte);
+  box-shadow: var(--ombre-douce);
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+/* La question est un <button> pour être utilisable au clavier */
+.faq-question {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 18px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--police-texte);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--couleur-encre);
+}
+
+/* La petite pastille "+" qui pivote quand on ouvre */
+.faq-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--couleur-moutarde-doux);
+  color: var(--couleur-cassis);
+  font-weight: 900;
+  flex-shrink: 0;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.faq-item.ouverte .faq-icone {
+  transform: rotate(45deg);   /* Le "+" devient une croix "×" */
+  background-color: var(--couleur-moutarde);
+}
+
+/* La réponse est repliée par défaut (hauteur 0) */
+.faq-reponse {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.faq-item.ouverte .faq-reponse {
+  max-height: 400px;   /* Valeur large : laisse la place au texte */
+}
+
+.faq-reponse p {
+  margin: 0;
+  padding: 0 20px 20px 62px;  /* Aligné avec le texte de la question */
+  color: var(--couleur-texte-doux);
+}
+
+
+/* ============================================================
+   14. FORMULAIRE DE CONTACT
+   ============================================================ */
+.formulaire-contact {
+  display: grid;
+  gap: 18px;
+}
+
+/* Chaque champ = un label au-dessus de son input */
+.champ {
+  display: grid;
+  gap: 6px;
+}
+
+.champ label {
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.champ input,
+.champ select,
+.champ textarea {
+  padding: 13px 16px;
+  border: 2px solid var(--couleur-moutarde-doux);
+  border-radius: 12px;
+  font-family: var(--police-texte);
+  font-size: 1rem;
+  color: var(--couleur-encre);
+  background-color: var(--couleur-carte);
+}
+
+/* Bordure cassis quand le champ est sélectionné */
+.champ input:focus,
+.champ select:focus,
+.champ textarea:focus {
+  outline: none;
+  border-color: var(--couleur-cassis);
+  box-shadow: 0 0 0 4px rgba(107, 33, 67, 0.1);
+}
+
+/* La case à cocher des conditions */
+.champ-case {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+}
+
+.champ-case input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--couleur-cassis);  /* Coche aux couleurs du site */
+}
+
+/* Message de confirmation ou d'erreur après l'envoi (géré par main.js) */
+.message-formulaire {
+  display: none;           /* Caché par défaut */
+  padding: 14px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.message-formulaire.succes {
+  display: block;
+  background-color: #E7F3E2;
+  color: #2E5E1F;
+}
+
+.message-formulaire.erreur {
+  display: block;
+  background-color: #F9E3E3;
+  color: #8C2B2B;
+}
+
+/* Disposition à deux colonnes du formulaire sur grand écran */
+@media (min-width: 700px) {
+  .formulaire-contact {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Certains champs (message, bouton...) occupent toute la largeur */
+  .champ-large,
+  .champ-case,
+  .formulaire-contact .bouton,
+  .message-formulaire {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Grille des cartes d'information (email, horaires...) */
+.grille-infos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.carte-info {
+  background-color: var(--couleur-carte);
+  border-radius: var(--rayon-carte);
+  box-shadow: var(--ombre-douce);
+  padding: 22px;
+  text-align: center;
+}
+
+.carte-info h3 {
+  margin: 0 0 6px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--couleur-cassis);
+  font-family: var(--police-texte);
+  font-weight: 800;
+}
+
+.carte-info p {
+  margin: 0;
+  color: var(--couleur-texte-doux);
+}
+
+@media (min-width: 600px) {
+  .grille-infos {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1000px) {
+  .grille-infos {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+
+/* ============================================================
+   15. APPEL À L'ACTION FINAL (bandeau cassis en bas de page)
+   ============================================================ */
+.cta-final {
+  background: linear-gradient(135deg, var(--couleur-cassis), var(--couleur-cassis-fonce));
+  color: #fff;
+  text-align: center;
+  padding: 64px 0;
+}
+
+.cta-final h2 {
+  color: #fff;
+  font-size: 1.7rem;
+  margin: 0 0 12px;
+}
+
+.cta-final p {
+  opacity: 0.92;
+  max-width: 560px;
+  margin: 0 auto 28px;
+}
+
+.cta-final .actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+/* Le bouton secondaire passe en blanc sur fond cassis */
+.cta-final .bouton-secondaire {
+  color: #fff;
+  border-color: #fff;
+}
+.cta-final .bouton-secondaire:hover {
+  background-color: #fff;
+  color: var(--couleur-cassis);
+}
+
+@media (min-width: 600px) {
+  .cta-final .actions {
+    flex-direction: row;
+    justify-content: center;
+  }
+  .cta-final h2 {
+    font-size: 2rem;
+  }
+}
+
+
+/* ============================================================
+   16. PIED DE PAGE
+   ============================================================ */
+.pied-de-page {
+  background-color: var(--couleur-cassis-fonce);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 48px 0 0;
+  font-size: 0.95rem;
+}
+
+.pied-interieur {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  padding-bottom: 36px;
+}
+
+.pied-section h3 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin: 0 0 12px;
+}
+
+.pied-section h4 {
+  color: var(--couleur-moutarde);
+  font-family: var(--police-texte);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin: 0 0 12px;
+}
+
+.pied-section p {
+  margin: 0 0 8px;
+  line-height: 1.7;
+}
+
+.pied-liens {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pied-liens li {
+  margin: 8px 0;
+}
+
+.pied-liens a,
+.pied-section a {
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: none;
 }
 
-/* Hero */
-.hero{padding:36px 0;background:linear-gradient(180deg,rgba(11,110,246,0.06),transparent);}
-.hero-inner{display:flex;gap:24px;align-items:center}
-.hero-text h2{margin:0;font-size:1.6rem}
-.hero-text p{color:var(--muted);margin:10px 0 16px;line-height:1.45}
-.hero-cta .btn{display:inline-block;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:700}
-.btn.primary{background:var(--accent);color:#fff;margin-right:10px;box-shadow:0 6px 18px rgba(11,110,246,0.15)}
-.btn{background:#fff;color:var(--accent);border:1px solid rgba(15,23,32,0.04)}
-
-.hero-card{background:#fff;padding:16px;border-radius:12px;box-shadow:0 8px 22px rgba(12,34,60,0.06);display:flex;flex-direction:column;align-items:center;min-width:180px}
-.avatar{margin-bottom:8px}
-.meta{color:var(--muted);font-size:0.85rem}
-
-/* Avatar 3D tilt */
-.avatar-3d{perspective:1000px;display:inline-block;border-radius:999px}
-.avatar-inner{transform-style:preserve-3d;transition:transform .12s cubic-bezier(.2,.9,.2,1),box-shadow .12s;will-change:transform;display:inline-block;border-radius:999px;overflow:hidden}
-.avatar-inner svg{display:block}
-
-/* Gear decoration and slight rotation */
-.avatar-gear{position:absolute;right:-6px;bottom:-6px;width:42px;height:42px;opacity:0.95}
-.avatar-gear .gear{fill:rgba(255,255,255,0.12);stroke:rgba(255,255,255,0.25);stroke-width:1}
-.gear-rotate{animation:gear-spin 6s linear infinite}
-@keyframes gear-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-
-/* Tilt settings control */
-.tilt-control{position:fixed;right:18px;bottom:18px;background:var(--card);border-radius:12px;padding:10px 12px;box-shadow:0 10px 30px rgba(2,6,23,0.12);z-index:80;display:flex;align-items:center;gap:8px}
-.tilt-control button{background:transparent;border:none;cursor:pointer;font-size:18px}
-.tilt-panel{display:flex;align-items:center;gap:8px}
-.tilt-panel label{font-size:0.85rem;color:var(--muted)}
-.tilt-range{width:140px}
-
-
-
-/* Decorative animated circles in hero */
-.hero{position:relative;overflow:hidden}
-.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;opacity:0.14;filter:blur(24px);pointer-events:none}
-.hero::before{width:320px;height:320px;background:radial-gradient(circle at 30% 30%,var(--accent),transparent);left:-60px;top:-80px;animation:float 8s ease-in-out infinite}
-.hero::after{width:260px;height:260px;background:radial-gradient(circle at 70% 70%,var(--accent-2),transparent);right:-40px;bottom:-60px;animation:float 10s ease-in-out infinite alternate}
-
-@keyframes float{0%{transform:translateY(0) translateX(0)}50%{transform:translateY(-18px) translateX(6px)}100%{transform:translateY(0) translateX(0)}}
-
-/* Cards */
-.card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 6px 18px rgba(15,23,32,0.04);margin:20px 0}
-
-/* Skills */
-.skill{margin:12px 0}
-.skill-header{display:flex;justify-content:space-between;margin-bottom:6px;font-weight:600}
-.skill-bar{background:#eef3ff;border-radius:999px;height:12px;overflow:hidden}
-.skill-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px;transition:width 1.2s cubic-bezier(.2,.9,.2,1)}
-
-/* Projects */
-.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.project{background:linear-gradient(180deg,#fff,#fbfdff);padding:14px;border-radius:10px;transition:transform .18s ease,box-shadow .18s ease}
-.project:hover{transform:translateY(-6px);box-shadow:0 18px 36px rgba(12,34,60,0.08)}
-.project .more{margin-top:10px;background:transparent;border:1px solid rgba(11,110,246,0.12);padding:8px 10px;border-radius:8px;cursor:pointer}
-
-/* Modal */
-.modal{display:none}
-.modal[aria-hidden="false"]{display:block;position:fixed;inset:0;z-index:60}
-.modal-overlay{position:fixed;inset:0;background:rgba(2,6,23,0.5)}
-.modal-panel{position:relative;margin:60px auto;max-width:720px;background:var(--card);border-radius:12px;padding:20px;box-shadow:0 30px 80px rgba(2,6,23,0.4);z-index:70}
-.modal-close{position:absolute;right:12px;top:8px;border:none;background:transparent;font-size:22px;cursor:pointer}
-.modal-actions{margin-top:16px;display:flex;gap:8px}
-.modal-carousel{display:flex;align-items:center;gap:12px;margin:12px 0}
-.carousel-track{flex:1;display:flex;align-items:center;justify-content:center;min-height:220px}
-.carousel-img{max-width:100%;max-height:420px;border-radius:8px;box-shadow:0 12px 30px rgba(2,6,23,0.12)}
-.carousel-prev,.carousel-next{background:transparent;border:1px solid rgba(2,6,23,0.06);padding:8px 12px;border-radius:8px;cursor:pointer;font-size:20px}
-.carousel-prev:hover,.carousel-next:hover{background:rgba(11,110,246,0.06)}
-
-/* Header actions */
-.header-actions{display:flex;align-items:center;gap:10px}
-.btn.small{padding:8px 10px;border-radius:8px;font-weight:700;background:#fff;color:var(--accent)}
-.icon-btn{background:transparent;border-radius:8px;border:1px solid rgba(255,255,255,0.12);padding:8px;cursor:pointer;color:#fff}
-
-/* Focus states for accessibility */
-.project:focus{outline:3px solid rgba(10,100,230,0.14);transform:translateY(-4px)}
-.icon-btn:focus{outline:2px solid rgba(255,255,255,0.18)}
-
-/* Dark theme */
-html.dark{--bg:#071023;--card:#071826;--accent:#79b8ff;--accent-2:#5cc0ff;--muted:#94a3b8;--text:#e6eef8}
-html.dark body{background:var(--bg);color:var(--text)}
-.dark .site-header{background:linear-gradient(90deg,var(--accent) 0%,var(--accent-2) 100%)}
-.dark .card{background:linear-gradient(180deg,#071a2a,#071826)}
-.dark .project-thumb rect{fill:#083148}
-
-/* Reveal animations */
-.reveal{opacity:0;transform:translateY(18px) scale(.995);transition:opacity .7s cubic-bezier(.2,.9,.2,1),transform .7s cubic-bezier(.2,.9,.2,1)}
-.reveal.is-visible{opacity:1;transform:none}
-
-/* Navigation underline animation */
-.main-nav a{position:relative}
-.main-nav a::after{content:"";position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-2));bottom:-8px;transform:scaleX(0);transform-origin:left center;transition:transform .28s cubic-bezier(.2,.9,.2,1),opacity .28s}
-.main-nav a:hover::after,.main-nav a:focus::after{transform:scaleX(1);opacity:1}
-
-/* Project hover overlay + subtle 3D tilt */
-.project{perspective:900px}
-.project .project-thumb{transition:transform .28s cubic-bezier(.2,.9,.2,1)}
-.project:hover .project-thumb{transform:translateY(-6px) rotateX(4deg)}
-.project::after{content:"";position:absolute;inset:0;border-radius:10px;pointer-events:none;transition:box-shadow .28s}
-.project:hover::after{box-shadow:inset 0 0 60px rgba(11,110,246,0.02)}
-
-/* Subtle text gradients */
-.hero-text h2{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
-
-/* Improve social links */
-.socials a{padding:6px 8px;border-radius:8px;border:1px solid transparent}
-.socials a:hover{background:rgba(11,110,246,0.06);border-color:rgba(11,110,246,0.08)}
-
-/* Small utility */
-.muted{color:var(--muted)}
-
-.project-thumb{height:100px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-.project h3{margin:0 0 6px}
-.tag{display:inline-block;margin-top:10px;color:var(--muted);font-size:0.85rem}
-
-/* Timeline */
-.timeline{display:flex;flex-direction:column;gap:16px;margin-top:16px}
-.timeline-item{padding:16px;background:linear-gradient(135deg,#f0f9ff,#f9f1ff);border-radius:8px;border-left:4px solid var(--accent)}
-.timeline-item h3{margin:0 0 4px;font-size:1.05rem}
-.timeline-item .muted{margin:0;font-size:0.85rem}
-.timeline-item p{margin:8px 0 0;line-height:1.45;color:#555}
-
-/* Mini Gallery */
-.mini-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0}
-.mini-gallery img{width:100%;height:auto;border-radius:8px;object-fit:cover;max-height:180px;box-shadow:0 4px 12px rgba(12,34,60,0.08)}
-
-/* Passions */
-.passions-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.passion{padding:14px;background:linear-gradient(180deg,#fff7ed,#fffaf5);border-radius:8px}
-
-/* Contact */
-.contact-form{display:grid;gap:10px}
-.contact-form div{display:grid;gap:4px}
-.contact-form label{font-size:0.9rem;font-weight:600;color:var(--text)}
-.contact-form input,.contact-form textarea{padding:10px;border:1px solid #e6eef9;border-radius:8px;font-family:inherit;font-size:14px}
-.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(11,110,246,0.1)}
-.contact-form button{background:var(--accent);color:#fff;border:none;padding:12px 16px;border-radius:8px;font-weight:800;cursor:pointer;font-size:14px}
-.contact-form button:hover{opacity:0.95;box-shadow:0 6px 18px rgba(11,110,246,0.15)}
-
-/* Footer */
-.site-footer{margin-top:40px;padding:32px 0 16px;color:var(--muted);font-size:0.9rem;border-top:1px solid rgba(12,34,60,0.08);background:var(--card)}
-.footer-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:24px}
-.footer-section h3{margin:0 0 12px;font-size:1rem;color:var(--text);font-weight:700}
-.footer-section h4{margin:0 0 10px;font-size:0.95rem;color:var(--text);font-weight:600}
-.footer-text{margin:0 0 8px;line-height:1.4;color:var(--muted)}
-.footer-links{list-style:none;margin:0;padding:0}
-.footer-links li{margin:6px 0}
-.footer-links a{color:var(--muted);text-decoration:none;transition:color .2s}
-.footer-links a:hover{color:var(--accent)}
-.footer-section .socials{margin:0}
-.footer-section .socials a{color:var(--muted);text-decoration:none;display:inline-block;margin:0 10px 0 0;padding:0;border:none}
-.footer-section .socials a:hover{color:var(--accent)}
-.footer-bottom{text-align:center;padding-top:16px;border-top:1px solid rgba(12,34,60,0.08);color:var(--muted)}
-.footer-bottom p{margin:0}
-
-/* Mobile menu toggle */
-.mobile-menu-toggle{display:none;background:transparent;border:none;cursor:pointer;padding:6px;z-index:90}
-.hamburger{display:flex;flex-direction:column;gap:5px}
-.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:1px;transition:all .3s}
-.main-nav.open .hamburger span:nth-child(1){transform:rotate(45deg) translateY(10px)}
-.main-nav.open .hamburger span:nth-child(2){opacity:0}
-.main-nav.open .hamburger span:nth-child(3){transform:rotate(-45deg) translateY(-10px)}
-
-/* CTA button styling */
-.btn.cta-btn{background:#fff;color:var(--accent);font-weight:700;padding:10px 14px}
-.btn.cta-btn:hover{background:rgba(255,255,255,0.95);box-shadow:0 4px 12px rgba(11,110,246,0.15)}
-
-/* Responsive */
-@media (max-width:880px){
-  .hero-inner{flex-direction:column;align-items:flex-start}
-  .footer-inner{grid-template-columns:repeat(2,1fr);gap:20px}
+.pied-liens a:hover,
+.pied-section a:hover {
+  color: var(--couleur-moutarde);
+  text-decoration: underline;
 }
 
-/* Services Overview Styles */
-.services-overview{padding:48px 0;background:linear-gradient(180deg,transparent,rgba(11,110,246,0.03))}
-.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:28px}
-.service-card{background:var(--card);padding:28px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,32,0.04);transition:transform .3s ease,box-shadow .3s ease;border:1px solid rgba(11,110,246,0.05)}
-.service-card:hover{transform:translateY(-6px);box-shadow:0 12px 36px rgba(11,110,246,0.1)}
-.service-icon{font-size:3rem;margin-bottom:12px}
-.service-card h3{margin:0 0 12px;font-size:1.2rem;color:var(--text)}
-.service-card p{color:var(--muted);line-height:1.6;margin:0 0 16px}
-.service-link{color:var(--accent);text-decoration:none;font-weight:600;transition:opacity .2s;display:inline-block}
-.service-link:hover{opacity:0.8}
-
-/* Portfolio Preview Styles */
-.portfolio-preview{padding:48px 0;background:transparent}
-.section-title{font-size:2rem;margin:0 0 32px;text-align:center;color:var(--text)}
-.section-title::after{content:"";display:block;width:60px;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent-2));margin:16px auto 0;border-radius:2px}
-
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-
-/* Why Choose Us Styles */
-.why-choose{padding:48px 0;background:linear-gradient(180deg,rgba(11,110,246,0.03),transparent)}
-.benefits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:28px}
-.benefit-card{background:var(--card);padding:24px;border-radius:12px;text-align:center;box-shadow:0 4px 12px rgba(15,23,32,0.04);border:1px solid rgba(11,110,246,0.05)}
-.benefit-card:hover{box-shadow:0 8px 20px rgba(11,110,246,0.08)}
-.benefit-icon{font-size:2.5rem;margin-bottom:12px;display:block}
-.benefit-card h3{margin:0 0 12px;font-size:1.1rem;color:var(--text)}
-.benefit-card p{color:var(--muted);line-height:1.6;margin:0;font-size:0.95rem}
-
-/* Main CTA Section Styles */
-.main-cta{padding:60px 0;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);color:#fff}
-.cta-inner{text-align:center}
-.cta-content h2{margin:0 0 12px;font-size:2rem;color:#fff}
-.cta-content p{margin:0 0 24px;font-size:1.1rem;opacity:0.95;line-height:1.5}
-.btn.large{padding:14px 28px;font-size:1rem}
-.btn.primary.large{background:#fff;color:var(--accent);box-shadow:0 10px 30px rgba(0,0,0,0.2)}
-.btn.primary.large:hover{background:rgba(255,255,255,0.95)}
-
-@media (max-width:720px){
-  .header-inner{flex-direction:row;gap:10px;justify-content:space-between}
-  .brand{text-align:left}
-  .brand h1{font-size:1.1rem}
-  .subtitle{font-size:0.8rem}
-  .mobile-menu-toggle{display:block}
-  .main-nav{position:absolute;top:100%;left:0;right:0;background:linear-gradient(90deg,var(--accent) 0%,var(--accent-2) 100%);flex-direction:column;gap:0;flex-wrap:nowrap;justify-content:flex-start;padding:12px;max-height:0;overflow:hidden;transition:max-height .3s ease;z-index:80}
-  .main-nav.open{max-height:300px;padding:12px}
-  .main-nav a{display:block;padding:12px;margin:0;border-bottom:1px solid rgba(255,255,255,0.1)}
-  .main-nav a:last-child{border-bottom:none}
-  .header-actions{gap:8px}
-  .btn.small{padding:8px 10px;font-size:0.85rem}
-  .passions-grid{grid-template-columns:1fr}
-  .hero-text h2{font-size:1.2rem}
-  .footer-inner{grid-template-columns:1fr;gap:16px}
-  .footer-bottom{text-align:center}
-  .section-title{font-size:1.6rem}
-  .main-cta{padding:40px 0}
-  .cta-content h2{font-size:1.5rem}
-  .cta-content p{font-size:1rem}
-  .services-grid, .benefits-grid{grid-template-columns:1fr}
+/* La ligne tout en bas avec le copyright */
+.pied-bas {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+  padding: 18px 0;
+  font-size: 0.85rem;
+  opacity: 0.8;
 }
 
+.pied-bas p {
+  margin: 0;
+}
+
+@media (min-width: 700px) {
+  .pied-interieur {
+    grid-template-columns: 2fr 1fr 1fr;
+  }
+}
+
+
+/* ============================================================
+   17. ANIMATIONS D'APPARITION
+   ------------------------------------------------------------
+   Les éléments avec la classe .apparition démarrent invisibles
+   et légèrement décalés vers le bas. main.js ajoute .est-visible
+   quand l'élément entre dans l'écran : il "apparaît" en douceur.
+   ============================================================ */
+.apparition {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.apparition.est-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Si l'utilisateur a demandé à réduire les animations dans son
+   système, on les désactive (accessibilité). */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .apparition {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .carte:hover,
+  .carte-tarif:hover,
+  .bouton:hover {
+    transform: none;
+  }
+}

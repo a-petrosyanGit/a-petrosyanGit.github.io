@@ -1,144 +1,145 @@
-# Agence Web PETROSYAN — Services WordPress & Développement Personnalisé
+# Code & Chouette 🦉 — L'agence web des commerçants de Dijon
 
-Site agence web proposant des services de création de sites internet en **WordPress** et **développement web personnalisé** pour PME et entrepreneurs.
+Site vitrine de notre agence web étudiante, basée à Dijon. Nous créons des sites
+pour les **commerçants, artisans et indépendants** de Bourgogne : sites vitrines,
+boutiques en ligne, refontes et maintenance.
 
-## Structure
+**Stack : HTML5 + CSS3 (vanilla) + JavaScript pur. Aucun framework.**
+
+## Structure du projet
 
 ```
-testHTMLcss/
-├── index.html              # Landing agence (Hero + Services + CTA)
-├── services.html           # Détail services : WordPress vs Développement personnalisé
-├── projects.html           # Portfolio / Case studies clients
-├── pricing.html            # Tarifs & packages disponibles
-├── about.html              # Qui sommes-nous + expertise
-├── contact.html            # Contact + Demande de devis
-├── styles.css              # Styles global (dark mode, animations, responsive)
-├── main.js                 # Interactions (reveal, modal, tilt avatar, theme toggle)
-├── include-html.js         # Chargeur de fragments HTML
+.
+├── index.html              # Accueil (héros, services, process, clin d'œil chouette)
+├── services.html           # Détail des 4 services
+├── pricing.html            # Tarifs (Le Nid, L'Envol, La Boutique, Le Sur-Mesure, Le Perchoir)
+├── about.html              # Qui sommes-nous ? (histoire, valeurs, équipe)
+├── contact.html            # Contact + formulaire de devis
+├── mentions-legales.html   # Mentions légales (⚠️ compléter les [À COMPLÉTER])
+├── confidentialite.html    # Politique de confidentialité RGPD
+├── styles.css              # TOUTE la mise en forme (mobile-first, très commentée)
+├── main.js                 # TOUTES les interactions (menu, animations, FAQ, formulaire)
+├── include-html.js         # Chargeur de fragments (header/footer partagés)
 ├── includes/
-│   ├── header.html         # En-tête agence (navigation)
-│   └── footer.html         # Pied de page (mentions, liens sociaux)
-└── test.html               # Landing page alternative
+│   ├── header.html         # En-tête commun (logo, navigation, burger)
+│   └── footer.html         # Pied de page commun
+├── sitemap.xml             # Plan du site pour Google (⚠️ remplacer le domaine)
+├── robots.txt              # Instructions pour les moteurs de recherche
+├── og-image.png            # Image affichée lors d'un partage sur les réseaux
+└── server.js               # Petit serveur Node pour l'envoi d'email (optionnel)
 ```
 
-## 📋 Services proposés
+## L'identité visuelle (palette Bourgogne)
 
-- **WordPress** : Sites vitrines et e-commerce clé en main
-- **Développement personnalisé** : Solutions web sur mesure (HTML/CSS/JS, Python, React)
-- **Consultation** : Audit et optimisation de sites existants
-- **Maintenance** : Support technique et mises à jour
+Toutes les couleurs sont des variables CSS, en haut de `styles.css` :
 
-## Infos de contact
+| Variable | Couleur | Usage |
+|---|---|---|
+| `--couleur-fond` | Blanc cassé `#FBF7EF` | Fond général |
+| `--couleur-moutarde` | Jaune moutarde `#E0A526` | Boutons, accents |
+| `--couleur-cassis` | Cassis/Bordeaux `#6B2143` | En-tête, titres, pied de page |
+| `--couleur-encre` | `#3A2230` | Texte principal |
 
-- **Email** : petrosyan21000@gmail.com
-- **Localisation** : Dijon, 21000 (France)
-- **Disponibilité** : Projets court & long terme
-- **Spécialiste** : PME, startups, micro-entrepreneurs
+Polices : **Fraunces** (titres) et **Nunito** (texte), via Google Fonts.
 
 ## Démarrage local
 
-À cause du `fetch()` utilisé par `include-html.js`, **vous devez lancer un serveur local** (pas de `file://` directement).
+⚠️ À cause du `fetch()` utilisé par `include-html.js` pour charger le header et
+le footer, il faut **lancer un serveur local** (ouvrir les fichiers en `file://`
+ne fonctionne pas).
 
-### Option 1 : Python (rapide)
+### Option 1 : Python (le plus rapide)
 
 ```bash
-cd c:\Users\avik\Desktop\testHTMLcss
 python -m http.server 8000
 ```
 
 Puis ouvrez [http://localhost:8000](http://localhost:8000)
 
-### Option 2 : Node.js (http-server)
+### Option 2 : Node.js (avec le formulaire d'email fonctionnel)
 
 ```bash
-npm install -g http-server
-cd c:\Users\avik\Desktop\testHTMLcss
-http-server
+npm install
+npm start
 ```
+
+Puis ouvrez [http://localhost:3000](http://localhost:3000)
+
+> Pour que l'envoi d'email fonctionne, renseignez un mot de passe d'application
+> Google dans `server.js` (variable `pass`).
 
 ### Option 3 : VS Code (Live Server)
 
-- Installez l'extension "Live Server" (ritwickdey.LiveServer)
-- Clic droit sur `index.html` → "Open with Live Server"
+Clic droit sur `index.html` → « Open with Live Server »
 
-## Modification rapide
+## Modifications courantes
 
-### Ajouter un projet client dans portfolio
+- **Changer un texte** : directement dans le fichier HTML de la page concernée
+- **Navigation / logo** : `includes/header.html`
+- **Pied de page** : `includes/footer.html`
+- **Couleurs / polices / arrondis** : variables `:root` en haut de `styles.css`
+- **Ajouter un membre d'équipe** : bloc commenté prêt à copier dans `about.html`
+- **Activer les témoignages** : bloc commenté prêt à l'emploi dans `index.html`
 
-Éditez `projects.html` — ajoutez une carte projet :
+## 🚀 Déploiement (checklist dans l'ordre)
 
-```html
-<article class="project" tabindex="0" role="button" 
-  data-title="Nom du Client" 
-  data-desc="Description du projet..." 
-  data-tags="WordPress|React|E-commerce" 
-  data-images="image1.jpg,image2.jpg">
-  <div class="project-thumb">
-    <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-      <rect width="120" height="80" rx="6" fill="#eef6ff"></rect>
-      <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" 
-        fill="#0b6ef6" font-family="Inter" font-size="12">Tag</text>
-    </svg>
-  </div>
-  <h3>Nom du Client</h3>
-  <p>Description courte</p>
-  <p class="tag">WordPress • E-commerce</p>
-  <button class="more">En savoir plus</button>
-</article>
-```
+### 1. Acheter le nom de domaine
 
-### Modifier textes et infos
+`codeetchouette.fr` (ou autre) chez OVH, Gandi ou Infomaniak (~10 €/an).
+Une adresse en `.netlify.app` ou `.github.io` nuit à la crédibilité ET au
+référencement — pour une agence web, le domaine propre est indispensable.
 
-- **Header & Navigation** : `includes/header.html`
-- **Footer & Contact** : `includes/footer.html`
-- **Textes pages** : `index.html`, `services.html`, `about.html`, etc.
-- **Styles** : `styles.css` (variables CSS au top)
+### 2. Remplacer le domaine partout dans le code
 
-## 🌟 Fonctionnalités principales
+Le code contient `codeetchouette.fr` en **placeholder**. Faites un
+rechercher-remplacer global avec votre vrai domaine. Fichiers concernés :
+les balises `<head>` des pages HTML (canonical, Open Graph), `sitemap.xml`
+et `robots.txt`.
 
-✨ **Design moderne** — Brand professionnel  
-🌙 **Dark Mode** — Bascule thème  
-✨ **Animations** — Reveal au scroll, hover effects  
-📸 **Portfolio Modal** — Galeries d'images clients  
-📱 **Responsive** — Mobile, tablet, desktop  
-🎯 **CTAs visibles** — Demande de devis partout  
-📝 **Formulaire contact** — Validation intégrée  
+### 3. Compléter les pages légales
 
-## 🚀 Déploiement
+`mentions-legales.html` et `confidentialite.html` contiennent des
+`[À COMPLÉTER]` (nom du responsable, statut, hébergeur). **Obligatoire en
+France avant la mise en ligne** (loi LCEN + RGPD).
 
-### GitHub Pages
+### 4. Brancher le formulaire (hébergement statique)
 
-```bash
-git init
-git add .
-git commit -m "Agence Web PETROSYAN"
-git branch -M main
-git remote add origin https://github.com/USERNAME/repo.git
-git push -u origin main
-```
+Sur Netlify/GitHub Pages, il n'y a pas de serveur Node pour `/send-email`.
+Créez un formulaire gratuit sur [formspree.io](https://formspree.io) et
+collez son adresse dans la constante `URL_ENVOI_FORMULAIRE` en haut de la
+section formulaire de `main.js`. C'est le seul changement nécessaire.
 
-Puis repo settings → Pages → Source: `main`
+### 5. Mettre en ligne sur Netlify (recommandé)
 
-### Netlify (recommandé - formulaires)
+1. Poussez le code sur GitHub
+2. Sur [netlify.com](https://netlify.com) : « Add new site » → « Import an
+   existing project » → choisissez le dépôt → Deploy (aucun réglage à changer)
+3. Dans « Domain settings », ajoutez votre nom de domaine ; le HTTPS est
+   automatique
 
-Upload via [netlify.com/drop](https://app.netlify.com/drop)
+Chaque `git push` redéploiera le site tout seul. ✨
 
-### Vercel
+### 6. Activer la visibilité Google
 
-```bash
-npm i -g vercel
-cd testHTMLcss
-vercel
-```
+1. **Fiche Google Business Profile** ([business.google.com](https://business.google.com)) :
+   LE levier n°1 pour « agence web Dijon ». Remplissez tout, ajoutez des
+   photos, et récoltez des avis dès les premiers clients.
+2. **Google Search Console** ([search.google.com/search-console](https://search.google.com/search-console)) :
+   validez votre domaine puis soumettez `sitemap.xml`.
+3. **Liens locaux** : annuaire CCI Côte-d'Or, associations de commerçants,
+   page partenaires de l'IUT... et le footer « Site réalisé par Code &
+   Chouette » sur chaque site livré à un client.
 
-## 📖 Documentation complète
+## Points techniques à connaître
 
-Voir `DOCUMENTATION.md` pour :
-- Architecture technique complète
-- Guide modification détaillé
-- Pages et fonctionnalités
-- Maintenance
+- **Mobile-first** : les styles de base ciblent le mobile ; les media queries
+  `@media (min-width: ...)` adaptent ensuite pour les grands écrans.
+- **Pas de `<script>` dans les includes** : les scripts injectés via `innerHTML`
+  ne sont jamais exécutés par le navigateur. Toute la logique vit dans `main.js`,
+  qui attend l'événement `includesLoaded`.
+- **Accessibilité** : lien d'évitement, `aria-expanded` sur le burger et la FAQ,
+  `prefers-reduced-motion` respecté pour les animations.
 
 ---
 
-**Agence Web PETROSYAN — 7 juin 2026**
+**Code & Chouette — fait avec soin (et pas mal de café) à Dijon** ☕🦉

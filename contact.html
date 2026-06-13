@@ -3,240 +3,224 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact & Devis — Agence Web PETROSYAN</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Contactez Code & Chouette pour un devis gratuit : site vitrine, boutique en ligne ou refonte. Réponse sous 48 h. Agence web étudiante à Dijon.">
+  <title>Contact &amp; devis gratuit — Code &amp; Chouette, agence web à Dijon</title>
+
+  <!-- Polices : Fraunces pour les titres, Nunito pour le texte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230b6ef6'/%3E%3Ctext x='50' y='58' font-size='44' text-anchor='middle' fill='%23fff' font-family='Inter, Arial'%3EAP%3C/text%3E%3C/svg%3E">
+
+  <!-- Favicon : notre chouette sur fond moutarde 🦉 -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23E0A526'/%3E%3Ctext x='50' y='66' font-size='52' text-anchor='middle'%3E%F0%9F%A6%89%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#6B2143">
+
+  <!-- ============ Référencement & partage social ============
+       ⚠️ Remplacez codeetchouette.fr par votre vrai domaine
+       avant la mise en ligne (rechercher-remplacer global). -->
+  <link rel="canonical" href="https://codeetchouette.fr/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Code &amp; Chouette">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Contact &amp; devis gratuit — Code &amp; Chouette, agence web à Dijon">
+  <meta property="og:description" content="Racontez-nous votre projet : devis gratuit et réponse sous 48 h. L'agence web étudiante des commerçants et artisans de Dijon.">
+  <meta property="og:url" content="https://codeetchouette.fr/contact.html">
+  <meta property="og:image" content="https://codeetchouette.fr/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
 
   <script src="include-html.js" defer></script>
   <script src="main.js" defer></script>
-  <style>
-    .contact-form select {
-      padding: 10px;
-      border: 1px solid #e6eef9;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 14px;
-      background: var(--card);
-      color: var(--text);
-    }
-    .contact-form select:focus {
-      outline: none;
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(11, 110, 246, 0.1);
-    }
-    .form-checkbox {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      margin: 4px 0;
-    }
-    .form-checkbox input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-    }
-    .benefit-box {
-      background: linear-gradient(135deg, rgba(11, 110, 246, 0.05), rgba(74, 163, 255, 0.05));
-      padding: 24px;
-      border-radius: 10px;
-      border: 1px solid rgba(11, 110, 246, 0.1);
-      margin-top: 20px;
-    }
-    .benefit-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 10px 0;
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-    .benefit-item::before {
-      content: "✓";
-      color: var(--accent);
-      font-weight: bold;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    .faq-item {
-      margin: 16px 0;
-      padding: 12px;
-      background: var(--card);
-      border-radius: 8px;
-      border-left: 4px solid var(--accent);
-    }
-    .faq-item h4 {
-      margin: 0 0 6px 0;
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-    .faq-item p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .info-card {
-      padding: 16px;
-      background: var(--card);
-      border-radius: 8px;
-      border: 1px solid rgba(11, 110, 246, 0.05);
-    }
-    .info-card h3 {
-      font-size: 0.85rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin: 0 0 8px 0;
-      font-weight: 600;
-    }
-    .info-card p {
-      margin: 0;
-      font-size: 0.95rem;
-      color: var(--text);
-      line-height: 1.4;
-    }
-    .info-card a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    .info-card a:hover {
-      text-decoration: underline;
-    }
-    @media (max-width: 720px) {
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
+
+  <a class="lien-evitement" href="#contenu-principal">Aller au contenu principal</a>
+
+  <!-- En-tête commun -->
   <div data-include="includes/header.html"></div>
-  <main class="container">
-    <!-- En-tête Page -->
-    <section class="card reveal">
-      <h1>Contact & Devis</h1>
-      <p>Parlons de votre projet. Consultation gratuite, sans engagement.</p>
-    </section>
 
-    <!-- Section 1 : Formulaire de Demande de Devis -->
-    <section class="card reveal">
-      <h2>Demande de Devis</h2>
-      <p style="color: var(--muted); font-size: 0.95rem;">Remplissez ce formulaire et nous vous répondrons sous 48h.</p>
-      
-      <form id="contact-form" class="contact-form">
-        <div>
-          <label for="name">Nom complet *</label>
-          <input type="text" id="name" name="name" placeholder="Prénom NOM" required>
-        </div>
+  <main id="contenu-principal">
 
-        <div>
-          <label for="email">Email *</label>
-          <input type="email" id="email" name="email" placeholder="votre@email.com" required>
-        </div>
+    <!-- ========================================================
+         INTRODUCTION
+         ======================================================== -->
+    <section class="section">
+      <div class="conteneur">
+        <h1 class="titre-section apparition">On discute de votre projet&nbsp;?</h1>
+        <p class="sous-titre-section apparition">
+          Racontez-nous votre besoin en quelques lignes : on vous répond sous 48 h
+          avec un avis honnête et un devis gratuit. Et si vous préférez en parler
+          de vive voix autour d'un café, ça nous va encore mieux.
+        </p>
 
-        <div>
-          <label for="phone">Téléphone</label>
-          <input type="tel" id="phone" name="phone" placeholder="06 XX XX XX XX">
-        </div>
+        <!-- ====================================================
+             FORMULAIRE DE DEVIS
+             ----------------------------------------------------
+             ⚠️ Les attributs id des champs (name, email, phone,
+             project-type, budget, message, terms) sont utilisés
+             par main.js et server.js : ne les renommez pas sans
+             mettre à jour ces deux fichiers !
+             ==================================================== -->
+        <div class="carte apparition">
+          <h2>Demander un devis gratuit</h2>
+          <p class="texte-doux">Les champs marqués d'une étoile (*) sont obligatoires.</p>
 
-        <div>
-          <label for="project-type">Type de projet *</label>
-          <select id="project-type" name="project-type" required>
-            <option value="">-- Sélectionnez un type --</option>
-            <option value="vitrine">Vitrine WordPress</option>
-            <option value="ecommerce">E-commerce</option>
-            <option value="webapp">Application Web</option>
-            <option value="maintenance">Maintenance</option>
-            <option value="autre">Autre</option>
-          </select>
-        </div>
+          <form id="formulaire-contact" class="formulaire-contact">
 
-        <div>
-          <label for="budget">Budget indicatif *</label>
-          <select id="budget" name="budget" required>
-            <option value="">-- Sélectionnez une fourchette --</option>
-            <option value="0-1000">< 1 000€</option>
-            <option value="1000-3000">1 000€ - 3 000€</option>
-            <option value="3000-10000">3 000€ - 10 000€</option>
-            <option value="10000+">> 10 000€</option>
-            <option value="undefined">Non défini</option>
-          </select>
-        </div>
+            <div class="champ">
+              <label for="name">Votre nom *</label>
+              <input type="text" id="name" name="name" placeholder="Ex : Marie Moutarde" autocomplete="name" required>
+            </div>
 
-        <div>
-          <label for="message">Description du projet *</label>
-          <textarea id="message" name="message" rows="6" placeholder="Décrivez votre besoin..." required></textarea>
-        </div>
+            <div class="champ">
+              <label for="email">Votre email *</label>
+              <input type="email" id="email" name="email" placeholder="marie@exemple.fr" autocomplete="email" required>
+            </div>
 
-        <div class="form-checkbox">
-          <input type="checkbox" id="terms" name="terms" required>
-          <label for="terms" style="margin: 0; font-weight: 500;">J'accepte les conditions d'utilisation</label>
-        </div>
+            <div class="champ">
+              <label for="phone">Votre téléphone <span class="texte-doux">(si vous préférez qu'on vous appelle)</span></label>
+              <input type="tel" id="phone" name="phone" placeholder="06 12 34 56 78" autocomplete="tel">
+            </div>
 
-        <button type="submit" class="btn primary">Envoyer la demande</button>
-      </form>
-      <div id="form-message" style="margin-top:10px;display:none;padding:10px;border-radius:4px;"></div>
+            <div class="champ">
+              <label for="project-type">Votre projet</label>
+              <select id="project-type" name="project-type">
+                <option value="">— Choisissez (ou pas !) —</option>
+                <option value="vitrine">Un site vitrine</option>
+                <option value="boutique">Une boutique en ligne</option>
+                <option value="refonte">Un coup de jeune sur mon site actuel</option>
+                <option value="maintenance">De l'entretien / accompagnement</option>
+                <option value="autre">Autre chose / je ne sais pas encore</option>
+              </select>
+            </div>
 
-      <!-- Avantages Consultation Gratuite -->
-      <div class="benefit-box">
-        <h3 style="margin: 0 0 12px 0; font-size: 1rem;">Consultation Gratuite</h3>
-        <div class="benefit-item">Gratuit et sans engagement</div>
-        <div class="benefit-item">Évaluation de votre besoin</div>
-        <div class="benefit-item">Recommandations personnalisées</div>
-        <div class="benefit-item">Réponse rapide (< 48h)</div>
-      </div>
-    </section>
+            <div class="champ">
+              <label for="budget">Votre budget approximatif</label>
+              <select id="budget" name="budget">
+                <option value="">— Aucune idée, et c'est OK —</option>
+                <option value="moins-600">Moins de 600 €</option>
+                <option value="600-1000">Entre 600 € et 1 000 €</option>
+                <option value="1000-2000">Entre 1 000 € et 2 000 €</option>
+                <option value="plus-2000">Plus de 2 000 €</option>
+              </select>
+            </div>
 
-    <!-- Section 2 : Coordonnées & Infos Pratiques -->
-    <section class="card reveal">
-      <h2>Nos Coordonnées</h2>
-      <div class="info-grid">
-        <div class="info-card">
-          <h3>Email</h3>
-          <p><a href="mailto:petrosyan21000@gmail.com">petrosyan21000@gmail.com</a></p>
-        </div>
-        <div class="info-card">
-          <h3>Localisation</h3>
-          <p>Dijon, 21000<br>France</p>
-        </div>
-        <div class="info-card">
-          <h3>Horaires</h3>
-          <p>Lun - Ven<br>09:00 - 18:00</p>
-        </div>
-        <div class="info-card">
-          <h3>Délai Réponse</h3>
-          <p>Sous 48h</p>
+            <!-- Ce champ occupe toute la largeur (classe .champ-large) -->
+            <div class="champ champ-large">
+              <label for="message">Parlez-nous de votre projet *</label>
+              <textarea id="message" name="message" rows="6" placeholder="Ex : Je tiens une fromagerie rue Monge et j'aimerais un site avec mes horaires, mes produits et le click & collect..." required></textarea>
+            </div>
+
+            <div class="champ-case">
+              <input type="checkbox" id="terms" name="terms" required>
+              <label for="terms">J'accepte que mes informations soient utilisées pour me recontacter
+                (voir notre <a href="confidentialite.html">politique de confidentialité</a>). *</label>
+            </div>
+
+            <button type="submit" class="bouton bouton-principal bouton-grand">Envoyer ma demande 🦉</button>
+
+            <!-- Message de succès ou d'erreur, affiché par main.js -->
+            <div id="message-formulaire" class="message-formulaire" role="status" aria-live="polite"></div>
+
+          </form>
         </div>
       </div>
     </section>
 
-    <!-- Section 3 : FAQ Contact -->
-    <section class="card reveal">
-      <h2>Questions Fréquentes</h2>
-      
-      <div class="faq-item">
-        <h4>Combien de temps pour une réponse ?</h4>
-        <p>Nous vous répondons sous 48h ouvrables. Pour les demandes urgentes, appelez-nous directement.</p>
-      </div>
+    <!-- ========================================================
+         NOS COORDONNÉES
+         ======================================================== -->
+    <section class="section section-douce">
+      <div class="conteneur">
+        <h2 class="titre-section apparition">Nos coordonnées</h2>
+        <p class="sous-titre-section apparition">
+          On répond entre deux cours, mais on répond toujours.
+        </p>
 
-      <div class="faq-item">
-        <h4>Devez-vous consulter en personne ?</h4>
-        <p>Non ! Nous consultons par téléphone, visioconférence ou email selon votre préférence. Cela facilite le travail avec des clients partout en France.</p>
-      </div>
-
-      <div class="faq-item">
-        <h4>Puis-je appeler directement ?</h4>
-        <p>Bien sûr ! Si vous préférez un échange direct, envoyez-nous votre numéro dans le formulaire et nous vous recontacterons rapidement.</p>
+        <div class="grille-infos">
+          <div class="carte-info apparition">
+            <h3>📧 Email</h3>
+            <p><a href="mailto:petrosyan21000@gmail.com">petrosyan21000@gmail.com</a></p>
+          </div>
+          <div class="carte-info apparition">
+            <h3>📍 Où nous trouver</h3>
+            <p>Dijon (21000)<br>On se déplace dans toute la Bourgogne</p>
+          </div>
+          <div class="carte-info apparition">
+            <h3>🕐 Disponibilités</h3>
+            <p>Du lundi au samedi<br>(et la nuit, comme les chouettes)</p>
+          </div>
+          <div class="carte-info apparition">
+            <h3>⚡ Délai de réponse</h3>
+            <p>Sous 48 h<br>promis, juré</p>
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- ========================================================
+         FAQ CONTACT — accordéon géré par main.js
+         ======================================================== -->
+    <section class="section">
+      <div class="conteneur">
+        <h2 class="titre-section apparition">Avant de nous écrire</h2>
+        <p class="sous-titre-section apparition">
+          Trois petites réponses qui peuvent vous faire gagner du temps.
+        </p>
+
+        <div class="faq apparition">
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-icone" aria-hidden="true">+</span>
+              <span>Je n'y connais rien en informatique, c'est grave&nbsp;?</span>
+            </button>
+            <div class="faq-reponse">
+              <p>
+                Pas du tout, c'est même notre cas de figure préféré&nbsp;! Vous nous
+                parlez de votre métier, on s'occupe de toute la technique. Et on vous
+                explique tout en français, sans jargon — promis.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-icone" aria-hidden="true">+</span>
+              <span>Faut-il se rencontrer en personne&nbsp;?</span>
+            </button>
+            <div class="faq-reponse">
+              <p>
+                Comme vous préférez ! À Dijon et dans les environs, on adore passer
+                directement à votre boutique ou atelier. Sinon, le téléphone ou la
+                visio marchent très bien aussi.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-icone" aria-hidden="true">+</span>
+              <span>Le devis est-il vraiment gratuit et sans engagement&nbsp;?</span>
+            </button>
+            <div class="faq-reponse">
+              <p>
+                Vraiment. Vous recevez un devis détaillé, vous prenez le temps de la
+                réflexion, et si ce n'est pas le bon moment, ce n'est pas grave&nbsp;:
+                la chouette saura vous attendre. 🦉
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <!-- Pied de page commun -->
   <div data-include="includes/footer.html"></div>
+
 </body>
 </html>

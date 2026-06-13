@@ -3,161 +3,329 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Agence Web PETROSYAN — Sites WordPress clé en main et développement web personnalisé pour votre entreprise à Dijon.">
-  <title>Agence Web PETROSYAN — WordPress & Développement Web</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Code & Chouette 🦉 — L'agence web étudiante de Dijon. Sites vitrines, boutiques en ligne et refontes pour les commerçants, artisans et indépendants de Bourgogne. Tarifs doux, délais rapides, vraie proximité.">
+  <title>Code &amp; Chouette — Sites web pour commerçants et artisans à Dijon</title>
+
+  <!-- Polices : Fraunces pour les titres (chaleureuse), Nunito pour le texte (ronde et lisible) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230b6ef6'/%3E%3Ctext x='50' y='58' font-size='44' text-anchor='middle' fill='%23fff' font-family='Inter, Arial'%3EAP%3C/text%3E%3C/svg%3E">
-  <meta name="theme-color" content="#0b6ef6">
+
+  <!-- Favicon : notre chouette sur fond moutarde 🦉 -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23E0A526'/%3E%3Ctext x='50' y='66' font-size='52' text-anchor='middle'%3E%F0%9F%A6%89%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#6B2143">
+
+  <!-- ============ Référencement & partage social ============
+       ⚠️ Remplacez codeetchouette.fr par votre vrai domaine
+       avant la mise en ligne (rechercher-remplacer global). -->
+  <link rel="canonical" href="https://codeetchouette.fr/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Code &amp; Chouette">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Code &amp; Chouette — Sites web pour commerçants et artisans à Dijon">
+  <meta property="og:description" content="L'agence web étudiante de Dijon : sites vitrines, boutiques en ligne et refontes à tarifs doux, pour les commerçants et artisans de Bourgogne.">
+  <meta property="og:url" content="https://codeetchouette.fr/">
+  <meta property="og:image" content="https://codeetchouette.fr/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Données structurées : aident Google à comprendre qui nous
+       sommes (agence locale à Dijon) et à mieux nous afficher
+       dans les résultats de recherche locaux. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Code & Chouette",
+    "description": "Agence web étudiante à Dijon : création de sites vitrines, boutiques en ligne, refontes et maintenance pour les commerçants, artisans et indépendants de Bourgogne.",
+    "url": "https://codeetchouette.fr/",
+    "image": "https://codeetchouette.fr/og-image.png",
+    "email": "petrosyan21000@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Dijon",
+      "postalCode": "21000",
+      "addressCountry": "FR"
+    },
+    "areaServed": ["Dijon", "Bourgogne"],
+    "priceRange": "€",
+    "knowsAbout": ["Création de site internet", "Site vitrine", "Boutique en ligne", "Refonte de site web", "Maintenance de site web", "Référencement local"]
+  }
+  </script>
+
+  <!-- include-html.js charge l'en-tête/pied de page, main.js gère les interactions -->
   <script src="include-html.js" defer></script>
   <script src="main.js" defer></script>
 </head>
 <body>
+
+  <!-- Lien d'évitement pour la navigation au clavier (accessibilité) -->
+  <a class="lien-evitement" href="#contenu-principal">Aller au contenu principal</a>
+
+  <!-- En-tête commun, injecté par include-html.js -->
   <div data-include="includes/header.html"></div>
 
-  <!-- Hero Section -->
-  <section class="hero reveal">
-    <div class="container">
-      <div class="hero-text">
-        <h2>Créez votre présence en ligne</h2>
-        <p>Sites WordPress clé en main ou développement web personnalisé pour votre entreprise</p>
-        <div class="hero-cta">
-          <a class="btn primary" href="services.html">Voir nos services</a>
-          <a class="btn" href="contact.html">Demander un devis</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <main id="contenu-principal">
 
-  <!-- Services Overview Section -->
-  <section class="services-overview">
-    <div class="container">
-      <h2 class="section-title reveal">Nos Services Principaux</h2>
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <div class="service-icon">🚀</div>
-          <h3>WordPress Clé en Main</h3>
-          <p>Sites WordPress rapides, faciles à maintenir et avec e-commerce intégré. Idéal pour lancer votre activité rapidement.</p>
-          <a href="services.html" class="service-link">En savoir plus →</a>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon">⚙️</div>
-          <h3>Développement Personnalisé</h3>
-          <p>Solutions sur mesure, performances optimales et évolutifs. Parfait pour les projets complexes et spécifiques.</p>
-          <a href="services.html" class="service-link">En savoir plus →</a>
+    <!-- ========================================================
+         HÉROS — la grande promesse du site
+         ======================================================== -->
+    <section class="heros">
+      <div class="conteneur">
+        <p class="heros-badge apparition">🦉 Les jeunes dévs du quartier — Dijon</p>
+        <h1 class="heros-titre apparition">
+          Votre commerce mérite un beau site web.<br>
+          <span class="accent">On vous le construit, ici à Dijon.</span>
+        </h1>
+        <p class="heros-texte apparition">
+          Code &amp; Chouette, c'est une petite équipe d'étudiants en informatique
+          passionnés qui crée des sites rapides, élégants et abordables pour les
+          commerçants, artisans et indépendants de Bourgogne. Sans jargon, sans
+          mauvaise surprise, et toujours autour d'un café.
+        </p>
+        <div class="heros-actions apparition">
+          <a class="bouton bouton-principal bouton-grand" href="contact.html">Demander un devis gratuit</a>
+          <a class="bouton bouton-secondaire bouton-grand" href="services.html">Découvrir nos services</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Portfolio Preview Section -->
-  <section class="portfolio-preview">
-    <div class="container">
-      <h2 class="section-title reveal">Nos Projets Récents</h2>
-      <div class="project-grid">
-        <div class="project reveal">
-          <div class="project-thumb" style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%)">
-            <span style="font-size:3rem;opacity:0.8">🎨</span>
-          </div>
-          <h3>Redesign E-commerce</h3>
-          <p style="color:var(--muted);font-size:0.9rem;margin:0">Refonte complète d'un site e-commerce avec amélioration UX</p>
-          <div class="tags">
-            <span class="tag">WordPress</span>
-            <span class="tag">E-commerce</span>
-            <span class="tag">UX Design</span>
-          </div>
+    <!-- ========================================================
+         BANDEAU DE CONFIANCE — nos engagements en un coup d'œil
+         ======================================================== -->
+    <section class="bandeau-confiance" aria-label="Nos engagements">
+      <div class="conteneur">
+        <div class="confiance-item">
+          <div class="confiance-chiffre">&lt; 48 h</div>
+          <div class="confiance-libelle">pour vous répondre</div>
         </div>
-        <div class="project reveal">
-          <div class="project-thumb" style="background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%)">
-            <span style="font-size:3rem;opacity:0.8">📱</span>
-          </div>
-          <h3>App Web Progressive</h3>
-          <p style="color:var(--muted);font-size:0.9rem;margin:0">Application web responsive avec fonctionnalités offline</p>
-          <div class="tags">
-            <span class="tag">React</span>
-            <span class="tag">PWA</span>
-            <span class="tag">Performance</span>
-          </div>
+        <div class="confiance-item">
+          <div class="confiance-chiffre">590 €</div>
+          <div class="confiance-libelle">le premier site, tout compris</div>
         </div>
-        <div class="project reveal">
-          <div class="project-thumb" style="background:linear-gradient(135deg,#4facfe 0%,#00f2fe 100%)">
-            <span style="font-size:3rem;opacity:0.8">💼</span>
-          </div>
-          <h3>Plateforme SaaS</h3>
-          <p style="color:var(--muted);font-size:0.9rem;margin:0">SaaS de gestion avec authentification sécurisée</p>
-          <div class="tags">
-            <span class="tag">Node.js</span>
-            <span class="tag">MongoDB</span>
-            <span class="tag">Security</span>
-          </div>
+        <div class="confiance-item">
+          <div class="confiance-chiffre">2 à 4 sem.</div>
+          <div class="confiance-libelle">pour mettre votre site en ligne</div>
+        </div>
+        <div class="confiance-item">
+          <div class="confiance-chiffre">100 %</div>
+          <div class="confiance-libelle">dijonnais (et fiers de l'être)</div>
         </div>
       </div>
-      <div class="portfolio-cta reveal" style="margin-top:32px;text-align:center">
-        <a href="projects.html" class="btn primary">Voir tous les projets →</a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Why Choose Us Section -->
-  <section class="why-choose">
-    <div class="container">
-      <h2 class="section-title reveal">Pourquoi Nous Choisir ?</h2>
-      <div class="benefits-grid">
-        <div class="benefit-card reveal">
-          <div class="benefit-icon">✨</div>
-          <h3>Qualité Supérieure</h3>
-          <p>Code propre, performances optimales et respect des standards web pour une durabilité garantie.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <div class="benefit-icon">⚡</div>
-          <h3>Réactivité</h3>
-          <p>Délais courts, suivi régulier et disponibilité pour répondre à tous vos besoins rapidement.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <div class="benefit-icon">🛡️</div>
-          <h3>Support Continu</h3>
-          <p>Assistance après lancement, maintenance régulière et mises à jour de sécurité incluses.</p>
-        </div>
-        <div class="benefit-card reveal">
-          <div class="benefit-icon">🚀</div>
-          <h3>Innovation</h3>
-          <p>Technologies modernes, bonnes pratiques et solutions évolutives pour l'avenir de votre entreprise.</p>
+    <!-- ========================================================
+         NOS SERVICES — aperçu des 4 offres principales
+         ======================================================== -->
+    <section class="section">
+      <div class="conteneur">
+        <h2 class="titre-section apparition">Ce qu'on peut faire pour vous</h2>
+        <p class="sous-titre-section apparition">
+          Que vous partiez de zéro ou que votre site actuel ait pris un coup de vieux,
+          on a une solution simple et à votre portée.
+        </p>
+
+        <div class="grille-cartes">
+          <article class="carte apparition">
+            <div class="carte-icone" aria-hidden="true">🏪</div>
+            <h3>Site vitrine</h3>
+            <p>
+              Présentez votre boutique, vos horaires, vos produits et votre savoir-faire.
+              Vos clients vous trouvent sur Google, et c'est tout ce qui compte.
+            </p>
+            <span class="carte-prix">À partir de 590 €</span><br>
+            <a class="carte-lien" href="services.html">En savoir plus →</a>
+          </article>
+
+          <article class="carte apparition">
+            <div class="carte-icone" aria-hidden="true">🛒</div>
+            <h3>Boutique en ligne</h3>
+            <p>
+              Vendez vos produits sur internet, en livraison ou en click &amp; collect.
+              Paiement sécurisé, gestion simple : on vous forme, vous êtes autonome.
+            </p>
+            <span class="carte-prix">À partir de 1 490 €</span><br>
+            <a class="carte-lien" href="services.html">En savoir plus →</a>
+          </article>
+
+          <article class="carte apparition">
+            <div class="carte-icone" aria-hidden="true">✨</div>
+            <h3>Coup de jeune</h3>
+            <p>
+              Votre site existe déjà mais il date un peu ? On le modernise : design
+              actuel, affichage parfait sur mobile et chargement plus rapide.
+            </p>
+            <span class="carte-prix">Sur devis</span><br>
+            <a class="carte-lien" href="services.html">En savoir plus →</a>
+          </article>
+
+          <article class="carte apparition">
+            <div class="carte-icone" aria-hidden="true">🛡️</div>
+            <h3>Entretien &amp; accompagnement</h3>
+            <p>
+              Mises à jour, sauvegardes, petites modifications : on veille sur votre
+              site toute l'année, pour que vous puissiez vous concentrer sur votre métier.
+            </p>
+            <span class="carte-prix">39 €/mois</span><br>
+            <a class="carte-lien" href="pricing.html">Voir l'offre →</a>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Main CTA Section -->
-  <section class="main-cta">
-    <div class="container cta-inner">
-      <div class="cta-content reveal">
-        <h2>Prêt à démarrer votre projet ?</h2>
-        <p>Consultation gratuite, sans engagement. Parlons de vos objectifs.</p>
-        <a href="contact.html" class="btn primary large">Demander un devis gratuit</a>
+    <!-- ========================================================
+         POURQUOI NOUS — nos atouts de jeune équipe locale
+         ======================================================== -->
+    <section class="section section-douce">
+      <div class="conteneur">
+        <h2 class="titre-section apparition">Pourquoi les commerçants nous font confiance</h2>
+        <p class="sous-titre-section apparition">
+          Une agence étudiante, c'est moins cher qu'une grosse agence — mais ce n'est
+          pas la seule raison de travailler avec nous.
+        </p>
+
+        <div class="grille-cartes">
+          <article class="carte apparition">
+            <div class="carte-icone" aria-hidden="true">💶</div>
+            <h3>Des tarifs doux</h3>
+            <p>
+              Pas de bureaux luxueux, pas de commerciaux : juste des étudiants et leurs
+              ordinateurs. Résultat&nbsp;: une qualité pro à des prix accessibles aux TPE.
+            </p>
+          </article>
+
+          <article class="carte apparition">
+            <div class="carte-icone" aria-hidden="true">🤝</div>
+            <h3>Une vraie proximité</h3>
+            <p>
+              On habite à côté. On passe vous voir à la boutique, on vous explique tout
+              en français — pas en jargon — et on reste joignables après la livraison.
+            </p>
+          </article>
+
+          <article class="carte apparition">
+            <div class="carte-icone" aria-hidden="true">⚡</div>
+            <h3>Les technos d'aujourd'hui</h3>
+            <p>
+              On apprend les toutes dernières technologies en BUT Informatique, et on
+              les met directement au service de votre site&nbsp;: rapide, moderne, sécurisé.
+            </p>
+          </article>
+
+          <article class="carte apparition">
+            <div class="carte-icone" aria-hidden="true">🎓</div>
+            <h3>L'énergie des étudiants</h3>
+            <p>
+              On a tout à prouver, et ça se voit&nbsp;: réactivité, motivation et envie de
+              faire de votre site notre plus belle carte de visite.
+            </p>
+          </article>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
+    <!-- ========================================================
+         NOTRE FAÇON DE TRAVAILLER — 5 étapes simples
+         ======================================================== -->
+    <section class="section">
+      <div class="conteneur">
+        <h2 class="titre-section apparition">Comment ça se passe, concrètement&nbsp;?</h2>
+        <p class="sous-titre-section apparition">
+          Pas de tunnel administratif : cinq étapes claires, et vous savez toujours où on en est.
+        </p>
+
+        <!-- Les numéros sont générés automatiquement par le CSS (compteur) -->
+        <div class="etapes">
+          <div class="etape apparition">
+            <h3>On se rencontre</h3>
+            <p>Autour d'un café, chez vous ou à la boutique. Vous nous racontez votre métier et vos besoins.</p>
+          </div>
+          <div class="etape apparition">
+            <h3>On vous propose une maquette</h3>
+            <p>Un aperçu visuel de votre futur site. Vous ajustez, on affine, jusqu'à ce que ça vous plaise.</p>
+          </div>
+          <div class="etape apparition">
+            <h3>On développe</h3>
+            <p>On construit votre site avec soin et on vous montre l'avancée régulièrement.</p>
+          </div>
+          <div class="etape apparition">
+            <h3>On met en ligne</h3>
+            <p>Votre site est publié, visible sur Google, et on vous forme pour le faire vivre.</p>
+          </div>
+          <div class="etape apparition">
+            <h3>On reste là</h3>
+            <p>Une question, une retouche ? On veille sur votre site même après la livraison.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CLIN D'ŒIL CHOUETTE — l'ancrage local
+         ======================================================== -->
+    <section class="section section-cassis">
+      <div class="conteneur">
+        <div class="encart-chouette apparition">
+          <span class="chouette-emoji" aria-hidden="true">🦉</span>
+          <div>
+            <h3>Au fait, pourquoi « Chouette »&nbsp;?</h3>
+            <p>
+              À Dijon, tout le monde connaît la petite chouette de la rue de la Chouette&nbsp;:
+              on la caresse de la main gauche pour qu'elle porte bonheur. On s'est dit
+              qu'un porte-bonheur dijonnais, c'était exactement ce qu'il fallait pour
+              veiller sur vos projets web.
+            </p>
+            <p>
+              Et puis entre nous : comme la chouette, les développeurs voient très bien
+              la nuit. Surtout en période de partiels.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--
+      ========================================================
+      TÉMOIGNAGES — section prête à activer !
+      Décommentez ce bloc et remplacez par de VRAIS retours de
+      vos premiers clients (jamais de faux avis, promis ?).
+      ========================================================
+    <section class="section">
+      <div class="conteneur">
+        <h2 class="titre-section apparition">Ils nous ont fait confiance</h2>
+        <div class="grille-cartes">
+          <article class="carte apparition">
+            <p>« Citation du client... »</p>
+            <p><strong>Prénom — Nom du commerce, Dijon</strong></p>
+          </article>
+        </div>
+      </div>
+    </section>
+    -->
+
+    <!-- ========================================================
+         APPEL À L'ACTION FINAL
+         ======================================================== -->
+    <section class="cta-final">
+      <div class="conteneur">
+        <h2 class="apparition">Et si on parlait de votre projet&nbsp;?</h2>
+        <p class="apparition">
+          Le premier rendez-vous est gratuit et sans engagement. Au pire, vous aurez
+          passé un bon moment avec des jeunes motivés. Au mieux, vous repartez avec
+          un super site web.
+        </p>
+        <div class="actions apparition">
+          <a class="bouton bouton-principal bouton-grand" href="contact.html">Demander un devis gratuit</a>
+          <a class="bouton bouton-secondaire bouton-grand" href="pricing.html">Voir nos tarifs</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Pied de page commun, injecté par include-html.js -->
   <div data-include="includes/footer.html"></div>
 
-  <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const revealElements = document.querySelectorAll('.reveal');
-    
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.15,
-      rootMargin: '0px 0px -50px 0px'
-    });
-    
-    revealElements.forEach(el => observer.observe(el));
-  });
-  </script>
 </body>
 </html>

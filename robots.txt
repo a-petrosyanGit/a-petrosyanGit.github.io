@@ -1,0 +1,10 @@
+# robots.txt — Code & Chouette
+# Autorise tous les moteurs de recherche à explorer tout le site.
+# (Ne PAS bloquer /includes/ : Google en a besoin pour afficher
+# le menu et le pied de page lors du rendu JavaScript.)
+
+User-agent: *
+Allow: /
+
+# ⚠️ Remplacez codeetchouette.fr par votre vrai domaine avant la mise en ligne
+Sitemap: https://codeetchouette.fr/sitemap.xml

@@ -3,624 +3,321 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Nos Tarifs — Agence Web PETROSYAN. Transparence tarifaire pour tous vos projets web : WordPress, E-commerce, Web App et Maintenance.">
-  <title>Nos Tarifs — Agence Web PETROSYAN</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Nos tarifs clairs et sans surprise : site vitrine dès 590 €, boutique en ligne dès 1 490 €, maintenance 39 €/mois. Code & Chouette, l'agence web étudiante de Dijon.">
+  <title>Nos tarifs — Code &amp; Chouette, agence web à Dijon</title>
+
+  <!-- Polices : Fraunces pour les titres, Nunito pour le texte -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%230b6ef6'/%3E%3Ctext x='50' y='58' font-size='44' text-anchor='middle' fill='%23fff' font-family='Inter, Arial'%3EAP%3C/text%3E%3C/svg%3E">
-  <meta name="theme-color" content="#0b6ef6">
+
+  <!-- Favicon : notre chouette sur fond moutarde 🦉 -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23E0A526'/%3E%3Ctext x='50' y='66' font-size='52' text-anchor='middle'%3E%F0%9F%A6%89%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#6B2143">
+
+  <!-- ============ Référencement & partage social ============
+       ⚠️ Remplacez codeetchouette.fr par votre vrai domaine
+       avant la mise en ligne (rechercher-remplacer global). -->
+  <link rel="canonical" href="https://codeetchouette.fr/pricing.html">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Code &amp; Chouette">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Nos tarifs — Code &amp; Chouette, agence web à Dijon">
+  <meta property="og:description" content="Des tarifs clairs et sans surprise : site vitrine dès 590 €, boutique en ligne dès 1 490 €, maintenance 39 €/mois. Devis gratuit sous 48 h.">
+  <meta property="og:url" content="https://codeetchouette.fr/pricing.html">
+  <meta property="og:image" content="https://codeetchouette.fr/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+
   <script src="include-html.js" defer></script>
   <script src="main.js" defer></script>
-  <style>
-    /* Pricing Page Styles */
-    .pricing-intro {
-      text-align: center;
-      margin-bottom: 48px;
-    }
-
-    .pricing-intro h1 {
-      font-size: 2.2rem;
-      margin: 0 0 16px;
-      font-weight: 800;
-    }
-
-    .pricing-intro p {
-      font-size: 1.1rem;
-      color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
-      margin: 48px 0;
-    }
-
-    .pricing-card {
-      background: var(--card);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(15, 23, 32, 0.04);
-      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-      border: 2px solid transparent;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pricing-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 36px rgba(11, 110, 246, 0.12);
-    }
-
-    .pricing-card.featured {
-      border-color: var(--accent);
-      transform: scale(1.02);
-    }
-
-    .pricing-card.featured:hover {
-      transform: scale(1.02) translateY(-8px);
-    }
-
-    .pricing-badge {
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      color: #fff;
-      text-align: center;
-      padding: 8px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .pricing-header {
-      padding: 28px;
-      border-bottom: 1px solid rgba(15, 23, 32, 0.08);
-    }
-
-    .pricing-card h3 {
-      margin: 0 0 12px;
-      font-size: 1.4rem;
-      color: var(--text);
-    }
-
-    .pricing-subtitle {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin: 0;
-    }
-
-    .pricing-price {
-      font-size: 1.8rem;
-      color: var(--accent);
-      font-weight: 800;
-      margin: 16px 0 8px;
-    }
-
-    .pricing-duration {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .pricing-body {
-      padding: 28px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .pricing-features {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 24px;
-    }
-
-    .pricing-features li {
-      padding: 10px 0 10px 28px;
-      position: relative;
-      color: var(--text);
-      line-height: 1.6;
-      font-size: 0.95rem;
-    }
-
-    .pricing-features li:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--accent);
-      font-weight: 800;
-      font-size: 1.1rem;
-    }
-
-    .pricing-cta {
-      margin-top: auto;
-    }
-
-    .pricing-card .btn {
-      width: 100%;
-      text-align: center;
-      padding: 12px 16px;
-      font-weight: 700;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all .2s ease;
-      text-decoration: none;
-      display: block;
-    }
-
-    .pricing-card .btn.primary {
-      background: var(--accent);
-      color: #fff;
-      box-shadow: 0 6px 18px rgba(11, 110, 246, 0.15);
-    }
-
-    .pricing-card .btn.primary:hover {
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      box-shadow: 0 8px 24px rgba(11, 110, 246, 0.2);
-    }
-
-    .pricing-card .btn.secondary {
-      background: #fff;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-    }
-
-    .pricing-card .btn.secondary:hover {
-      background: rgba(11, 110, 246, 0.04);
-    }
-
-    /* Add-ons Section */
-    .addons-section {
-      margin: 56px 0;
-      padding: 32px;
-      background: rgba(11, 110, 246, 0.04);
-      border-radius: 12px;
-    }
-
-    .addons-section h2 {
-      font-size: 1.8rem;
-      margin: 0 0 28px;
-      text-align: center;
-    }
-
-    .addons-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .addon-card {
-      background: var(--card);
-      padding: 24px;
-      border-radius: 10px;
-      text-align: center;
-      border: 1px solid rgba(11, 110, 246, 0.1);
-      transition: all .2s ease;
-    }
-
-    .addon-card:hover {
-      border-color: var(--accent);
-      box-shadow: 0 6px 18px rgba(11, 110, 246, 0.08);
-    }
-
-    .addon-card h4 {
-      margin: 0 0 12px;
-      color: var(--text);
-      font-size: 1.05rem;
-    }
-
-    .addon-price {
-      font-size: 1.4rem;
-      color: var(--accent);
-      font-weight: 800;
-      margin: 12px 0;
-    }
-
-    .addon-description {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin: 0;
-    }
-
-    /* FAQ Section */
-    .faq-section {
-      margin: 56px 0;
-    }
-
-    .faq-section h2 {
-      font-size: 1.8rem;
-      text-align: center;
-      margin: 0 0 32px;
-    }
-
-    .faq-container {
-      max-width: 700px;
-      margin: 0 auto;
-    }
-
-    .faq-item {
-      background: var(--card);
-      border-radius: 10px;
-      margin-bottom: 16px;
-      border: 1px solid rgba(11, 110, 246, 0.1);
-      overflow: hidden;
-      transition: all .2s ease;
-    }
-
-    .faq-item:hover {
-      box-shadow: 0 6px 18px rgba(11, 110, 246, 0.08);
-    }
-
-    .faq-question {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      color: var(--text);
-      background: transparent;
-      border: none;
-      width: 100%;
-      text-align: left;
-      transition: background .2s ease;
-    }
-
-    .faq-question:hover {
-      background: rgba(11, 110, 246, 0.02);
-    }
-
-    .faq-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: rgba(11, 110, 246, 0.1);
-      color: var(--accent);
-      font-weight: 800;
-      margin-right: 16px;
-      transition: all .2s ease;
-    }
-
-    .faq-item.open .faq-icon {
-      background: var(--accent);
-      color: #fff;
-      transform: rotate(180deg);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .3s ease;
-    }
-
-    .faq-item.open .faq-answer {
-      max-height: 500px;
-    }
-
-    .faq-answer p {
-      padding: 0 20px 20px 60px;
-      color: var(--muted);
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    /* Final CTA */
-    .pricing-cta-section {
-      text-align: center;
-      padding: 48px 0;
-      margin: 48px 0;
-    }
-
-    .pricing-cta-section h2 {
-      font-size: 1.8rem;
-      margin: 0 0 16px;
-    }
-
-    .pricing-cta-section p {
-      font-size: 1.1rem;
-      color: var(--muted);
-      margin: 0 0 24px;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .pricing-intro h1 {
-        font-size: 1.6rem;
-      }
-
-      .pricing-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .pricing-card.featured {
-        transform: scale(1);
-      }
-
-      .pricing-card.featured:hover {
-        transform: translateY(-8px);
-      }
-
-      .addons-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-      }
-
-      .pricing-header,
-      .pricing-body {
-        padding: 20px;
-      }
-
-      .pricing-features li {
-        padding: 8px 0 8px 24px;
-        font-size: 0.9rem;
-      }
-
-      .faq-question {
-        padding: 16px;
-        font-size: 0.95rem;
-      }
-
-      .faq-icon {
-        width: 20px;
-        height: 20px;
-        margin-right: 12px;
-      }
-
-      .faq-answer p {
-        padding: 0 16px 16px 48px;
-        font-size: 0.9rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .addons-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .pricing-cta-section h2 {
-        font-size: 1.4rem;
-      }
-    }
-  </style>
 </head>
 <body>
+
+  <a class="lien-evitement" href="#contenu-principal">Aller au contenu principal</a>
+
+  <!-- En-tête commun -->
   <div data-include="includes/header.html"></div>
 
-  <section class="hero reveal">
-    <div class="container">
-      <div class="pricing-intro">
-        <h1>Nos Tarifs</h1>
-        <p>Transparence tarifaire. Choisissez le package qui correspond à votre besoin.</p>
-      </div>
-    </div>
-  </section>
+  <main id="contenu-principal">
 
-  <main class="container">
-    <!-- Pricing Cards -->
-    <section class="pricing-grid reveal">
-      <!-- Package 1: WordPress Vitrine -->
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <h3>Vitrine WordPress</h3>
-          <p class="pricing-subtitle">Site vitrine professionnel</p>
-          <div class="pricing-price">À partir de 1 500€</div>
-          <p class="pricing-duration">HT • 3-4 semaines</p>
+    <!-- ========================================================
+         INTRODUCTION
+         ======================================================== -->
+    <section class="section">
+      <div class="conteneur">
+        <h1 class="titre-section apparition">Des tarifs clairs, sans surprise</h1>
+        <p class="sous-titre-section apparition">
+          Le prix affiché est le prix payé. Tous nos forfaits comprennent le design,
+          le développement, la mise en ligne et une formation. Et le devis est
+          toujours gratuit.
+        </p>
+
+        <!-- ====================================================
+             LES QUATRE FORFAITS
+             ==================================================== -->
+        <div class="grille-tarifs apparition">
+
+          <!-- Forfait 1 : Le Nid -->
+          <article class="carte-tarif">
+            <div class="tarif-entete">
+              <h3>Le Nid</h3>
+              <p class="tarif-sous-titre">Pour poser votre première branche sur internet</p>
+              <p class="tarif-prix">590 €</p>
+              <p class="tarif-duree">tout compris • livré en 2 semaines</p>
+            </div>
+            <div class="tarif-corps">
+              <ul class="liste-coches">
+                <li>Site une page (ou jusqu'à 3 pages)</li>
+                <li>Design personnalisé à votre image</li>
+                <li>Parfait sur mobile</li>
+                <li>Formulaire de contact</li>
+                <li>Référencement Google de base</li>
+                <li>1 mois de suivi offert</li>
+              </ul>
+              <a class="bouton bouton-secondaire" href="contact.html">Choisir Le Nid</a>
+            </div>
+          </article>
+
+          <!-- Forfait 2 : L'Envol (mis en avant) -->
+          <article class="carte-tarif carte-tarif-vedette">
+            <div class="badge-vedette">🦉 Le préféré des commerçants</div>
+            <div class="tarif-entete">
+              <h3>L'Envol</h3>
+              <p class="tarif-sous-titre">Le site vitrine complet pour décoller</p>
+              <p class="tarif-prix">990 €</p>
+              <p class="tarif-duree">tout compris • livré en 3 semaines</p>
+            </div>
+            <div class="tarif-corps">
+              <ul class="liste-coches">
+                <li>Jusqu'à 8 pages (services, galerie, équipe...)</li>
+                <li>Vos photos et textes mis en valeur</li>
+                <li>Fiche Google Business optimisée (avis, carte)</li>
+                <li>Prise de rendez-vous ou réservation simple</li>
+                <li>Formation d'1 h pour être autonome</li>
+                <li>3 mois de suivi offerts</li>
+              </ul>
+              <a class="bouton bouton-principal" href="contact.html">Choisir L'Envol</a>
+            </div>
+          </article>
+
+          <!-- Forfait 3 : La Boutique -->
+          <article class="carte-tarif">
+            <div class="tarif-entete">
+              <h3>La Boutique</h3>
+              <p class="tarif-sous-titre">Pour vendre en ligne, simplement</p>
+              <p class="tarif-prix">1 490 €</p>
+              <p class="tarif-duree">tout compris • livré en 4 à 6 semaines</p>
+            </div>
+            <div class="tarif-corps">
+              <ul class="liste-coches">
+                <li>Boutique en ligne complète</li>
+                <li>Paiement sécurisé (CB, PayPal)</li>
+                <li>Click &amp; collect et livraison</li>
+                <li>Gestion des stocks toute simple</li>
+                <li>Formation de 2 h</li>
+                <li>3 mois de suivi offerts</li>
+              </ul>
+              <a class="bouton bouton-secondaire" href="contact.html">Choisir La Boutique</a>
+            </div>
+          </article>
+
+          <!-- Forfait 4 : Le Sur-Mesure -->
+          <article class="carte-tarif">
+            <div class="tarif-entete">
+              <h3>Le Sur-Mesure</h3>
+              <p class="tarif-sous-titre">Pour les besoins qui sortent du nid</p>
+              <p class="tarif-prix">Sur devis</p>
+              <p class="tarif-duree">délais selon le projet</p>
+            </div>
+            <div class="tarif-corps">
+              <ul class="liste-coches">
+                <li>Réservations avancées, espace client...</li>
+                <li>Outils métier spécifiques</li>
+                <li>Connexion à vos logiciels existants</li>
+                <li>Étude gratuite de votre besoin</li>
+                <li>Devis détaillé sous une semaine</li>
+                <li>6 mois de suivi offerts</li>
+              </ul>
+              <a class="bouton bouton-secondaire" href="contact.html">Décrire mon besoin</a>
+            </div>
+          </article>
+
         </div>
-        <div class="pricing-body">
-          <ul class="pricing-features">
-            <li>Site WordPress optimisé</li>
-            <li>5-8 pages inclubes</li>
-            <li>Formulaire contact</li>
-            <li>Intégration réseaux sociaux</li>
-            <li>SSL inclus</li>
-            <li>Support 1 mois inclus</li>
-          </ul>
-          <div class="pricing-cta">
-            <a href="contact.html" class="btn primary">Commencer</a>
+
+        <!-- ====================================================
+             LE PERCHOIR — l'offre de maintenance
+             ==================================================== -->
+        <div class="bandeau-maintenance apparition">
+          <div>
+            <h3>🦉 Le Perchoir — entretien &amp; accompagnement</h3>
+            <p>
+              On veille sur votre site toute l'année pour que vous n'ayez jamais
+              à vous en soucier. Sans engagement&nbsp;: vous partez quand vous voulez
+              (mais personne n'est jamais parti).
+            </p>
+            <ul class="liste-coches">
+              <li>Mises à jour de sécurité et sauvegardes régulières</li>
+              <li>30 minutes de modifications incluses chaque mois</li>
+              <li>Surveillance du site, de jour comme de nuit</li>
+              <li>Assistance par email et téléphone</li>
+            </ul>
           </div>
-        </div>
-      </div>
-
-      <!-- Package 2: E-commerce -->
-      <div class="pricing-card featured">
-        <div class="pricing-badge">⭐ Populaire</div>
-        <div class="pricing-header">
-          <h3>Site E-commerce</h3>
-          <p class="pricing-subtitle">Boutique en ligne fonctionnelle</p>
-          <div class="pricing-price">À partir de 3 500€</div>
-          <p class="pricing-duration">HT • 6-8 semaines</p>
-        </div>
-        <div class="pricing-body">
-          <ul class="pricing-features">
-            <li>WordPress + WooCommerce</li>
-            <li>Jusqu'à 50 produits</li>
-            <li>Paiement intégré (Stripe/PayPal)</li>
-            <li>Gestion stock automatisée</li>
-            <li>Emails de commande</li>
-            <li>Support 3 mois inclus</li>
-          </ul>
-          <div class="pricing-cta">
-            <a href="contact.html" class="btn primary">Commencer</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Package 3: Web App Sur Mesure -->
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <h3>Web App Personnalisée</h3>
-          <p class="pricing-subtitle">Application web sur mesure</p>
-          <div class="pricing-price">Sur devis</div>
-          <p class="pricing-duration">Variable • Min 4 semaines</p>
-        </div>
-        <div class="pricing-body">
-          <ul class="pricing-features">
-            <li>Développement custom</li>
-            <li>Base de données</li>
-            <li>API REST si besoin</li>
-            <li>Dashboard admin</li>
-            <li>Optimisation performance</li>
-            <li>Support 6 mois inclus</li>
-          </ul>
-          <div class="pricing-cta">
-            <a href="contact.html" class="btn primary">Demander un devis</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Package 4: Support & Maintenance -->
-      <div class="pricing-card">
-        <div class="pricing-header">
-          <h3>Support & Maintenance</h3>
-          <p class="pricing-subtitle">Maintenez votre site à jour</p>
-          <div class="pricing-price">99€/mois</div>
-          <p class="pricing-duration">HT • Engagement flexible</p>
-        </div>
-        <div class="pricing-body">
-          <ul class="pricing-features">
-            <li>Mises à jour plugins/thème</li>
-            <li>Backups mensuels</li>
-            <li>Monitoring uptime</li>
-            <li>Support email prioritaire</li>
-            <li>Optimisation SEO mensuelle</li>
-            <li>Garantie sécurité</li>
-          </ul>
-          <div class="pricing-cta">
-            <a href="contact.html" class="btn primary">S'abonner</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Add-ons Section -->
-    <section class="addons-section reveal">
-      <h2>Options Additionnelles</h2>
-      <div class="addons-grid">
-        <div class="addon-card">
-          <h4>Hébergement Premium</h4>
-          <div class="addon-price">+50€/mois</div>
-          <p class="addon-description">Serveur haute performance optimisé</p>
-        </div>
-        <div class="addon-card">
-          <h4>Domaine Personnalisé</h4>
-          <div class="addon-price">+10€/an</div>
-          <p class="addon-description">Domaine .fr ou autre extension</p>
-        </div>
-        <div class="addon-card">
-          <h4>SSL Wildcard</h4>
-          <div class="addon-price">+200€/an</div>
-          <p class="addon-description">Certificat pour tous les sous-domaines</p>
-        </div>
-        <div class="addon-card">
-          <h4>Consulting/Formation</h4>
-          <div class="addon-price">150€/heure</div>
-          <p class="addon-description">Accompagnement personnalisé</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="faq-section reveal">
-      <h2>Questions Fréquemment Posées</h2>
-      <div class="faq-container">
-        <div class="faq-item">
-          <button class="faq-question">
-            <span class="faq-icon">?</span>
-            <span>Quels sont les délais ?</span>
-          </button>
-          <div class="faq-answer">
-            <p>Les délais varient selon le type de projet. Un site vitrine WordPress prend 3-4 semaines, un e-commerce 6-8 semaines. Pour les projets sur mesure, nous établissons un planning détaillé lors de la consultation. Des délais express sont possibles moyennant des frais additionnels.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span class="faq-icon">?</span>
-            <span>Puis-je payer en plusieurs fois ?</span>
-          </button>
-          <div class="faq-answer">
-            <p>Oui, nous proposons un plan de paiement échelonné : 30% à la signature, 40% à mi-projet, et 30% à la livraison. Des modalités spéciales peuvent être discutées pour les gros projets. Contactez-nous pour en savoir plus.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span class="faq-icon">?</span>
-            <span>Que se passe-t-il après la livraison ?</span>
-          </button>
-          <div class="faq-answer">
-            <p>Après livraison, vous bénéficiez d'une période de support incluse (1 à 6 mois selon le package). Vous pouvez ensuite souscrire à notre service de maintenance pour la gestion à long terme. Nous vous formons également à l'utilisation de votre site.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span class="faq-icon">?</span>
-            <span>Avez-vous des réductions ?</span>
-          </button>
-          <div class="faq-answer">
-            <p>Oui ! Les réductions pour engagements long terme (6+ mois de maintenance), les projets groupés, et les associations sont possibles. Nous offrons également une remise de 10% pour les clients qui nous recommandent. Demandez-nous plus d'informations.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question">
-            <span class="faq-icon">?</span>
-            <span>WordPress ou Développement custom pour moi ?</span>
-          </button>
-          <div class="faq-answer">
-            <p>WordPress convient parfaitement pour les vitrines, blogs, et e-commerce standards. Le développement sur mesure s'impose si vous avez des besoins très spécifiques : logique métier complexe, intégrations personnalisées, ou scalabilité critique. Nous vous conseillerons lors d'une consultation gratuite.</p>
+          <div>
+            <p class="prix-maintenance">39 €/mois</p>
+            <a class="bouton bouton-principal" href="contact.html">S'abonner</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="pricing-cta-section reveal">
-      <h2>Une question sur les tarifs ?</h2>
-      <p>Notre équipe est disponible pour discuter de votre projet et trouver la meilleure solution.</p>
-      <a href="contact.html" class="btn primary large">Demander un devis gratuit</a>
+    <!-- ========================================================
+         OPTIONS ADDITIONNELLES
+         ======================================================== -->
+    <section class="section section-douce">
+      <div class="conteneur">
+        <h2 class="titre-section apparition">Les petits plus</h2>
+        <p class="sous-titre-section apparition">
+          Des options à ajouter à n'importe quel forfait, selon vos besoins.
+        </p>
+
+        <div class="grille-options">
+          <div class="carte-option apparition">
+            <h4>🌐 Nom de domaine &amp; hébergement</h4>
+            <p class="option-prix">~ 80 €/an</p>
+            <p>Votre adresse en .fr et l'hébergement de votre site. On gère tout pour vous.</p>
+          </div>
+          <div class="carte-option apparition">
+            <h4>✍️ Rédaction de vos textes</h4>
+            <p class="option-prix">dès 90 €</p>
+            <p>Pas le temps d'écrire ? On rédige des textes qui vous ressemblent, à partir d'un simple échange.</p>
+          </div>
+          <div class="carte-option apparition">
+            <h4>🎨 Logo &amp; identité visuelle</h4>
+            <p class="option-prix">dès 150 €</p>
+            <p>Un logo simple et moderne, avec vos couleurs, livré dans tous les formats utiles.</p>
+          </div>
+          <div class="carte-option apparition">
+            <h4>📸 Photos de votre commerce</h4>
+            <p class="option-prix">dès 120 €</p>
+            <p>Une petite séance photo pour montrer votre boutique et vos produits sous leur meilleur jour.</p>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- ========================================================
+         FAQ — accordéon géré par main.js
+         ======================================================== -->
+    <section class="section">
+      <div class="conteneur">
+        <h2 class="titre-section apparition">Les questions qu'on nous pose souvent</h2>
+        <p class="sous-titre-section apparition">
+          Et si la vôtre n'y est pas, <a href="contact.html">posez-la nous directement</a>&nbsp;!
+        </p>
+
+        <div class="faq apparition">
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-icone" aria-hidden="true">+</span>
+              <span>Pourquoi vos prix sont-ils plus bas que ceux des agences&nbsp;?</span>
+            </button>
+            <div class="faq-reponse">
+              <p>
+                Parce que nous sommes étudiants&nbsp;: pas de bureaux à payer, pas de
+                commerciaux, pas d'intermédiaires. Vous payez le travail, pas la
+                structure. La qualité, elle, ne change pas — c'est même notre meilleure
+                publicité pour la suite de nos études et de nos carrières.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-icone" aria-hidden="true">+</span>
+              <span>Puis-je payer en plusieurs fois&nbsp;?</span>
+            </button>
+            <div class="faq-reponse">
+              <p>
+                Bien sûr. En général&nbsp;: 30&nbsp;% à la commande, le reste à la
+                livraison, quand vous êtes satisfait. Pour les budgets serrés, on peut
+                étaler en 3 fois sans frais. On trouve toujours une solution.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-icone" aria-hidden="true">+</span>
+              <span>Le site m'appartient-il vraiment&nbsp;?</span>
+            </button>
+            <div class="faq-reponse">
+              <p>
+                Oui, à 100&nbsp;%. Le nom de domaine est enregistré à votre nom, et le
+                code comme les contenus vous appartiennent. Si un jour vous voulez
+                travailler avec quelqu'un d'autre, vous partez avec tout — sans pénalité
+                et sans rancune.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-icone" aria-hidden="true">+</span>
+              <span>Que se passe-t-il après la livraison&nbsp;?</span>
+            </button>
+            <div class="faq-reponse">
+              <p>
+                Chaque forfait inclut une période de suivi gratuit (1 à 6 mois). Ensuite,
+                vous pouvez rejoindre Le Perchoir (39 €/mois) pour qu'on continue de
+                veiller sur votre site, ou voler de vos propres ailes — on vous aura
+                formé pour ça.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              <span class="faq-icone" aria-hidden="true">+</span>
+              <span>Étudiants... est-ce bien sérieux&nbsp;?</span>
+            </button>
+            <div class="faq-reponse">
+              <p>
+                Très bonne question, et on préfère y répondre franchement&nbsp;: nous
+                sommes en BUT Informatique, formés aux technologies et aux méthodes
+                actuelles. Chaque projet est encadré par un devis signé, des étapes
+                claires et des délais écrits noir sur blanc. Et comme notre réputation
+                à Dijon se joue sur chaque site, on a tout intérêt à bien faire.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         APPEL À L'ACTION FINAL
+         ======================================================== -->
+    <section class="cta-final">
+      <div class="conteneur">
+        <h2 class="apparition">Un doute sur le bon forfait&nbsp;?</h2>
+        <p class="apparition">
+          Décrivez-nous votre projet en deux lignes : on vous oriente gratuitement
+          vers la formule la plus adaptée — même si c'est la moins chère.
+        </p>
+        <div class="actions apparition">
+          <a class="bouton bouton-principal bouton-grand" href="contact.html">Demander un devis gratuit</a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- Pied de page commun -->
   <div data-include="includes/footer.html"></div>
 
-  <script>
-    // Reveal animations
-    document.addEventListener('DOMContentLoaded', function() {
-      const revealElements = document.querySelectorAll('.reveal');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.15,
-        rootMargin: '0px 0px -50px 0px'
-      });
-      
-      revealElements.forEach(el => observer.observe(el));
-
-      // FAQ Toggle
-      const faqItems = document.querySelectorAll('.faq-item');
-      faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-          item.classList.toggle('open');
-        });
-      });
-    });
-  </script>
 </body>
 </html>

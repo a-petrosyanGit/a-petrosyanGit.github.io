@@ -58,13 +58,13 @@ app.post('/send-email', async (req, res) => {
     await transporter.sendMail({
       from: 'petrosyan21000@gmail.com',
       to: email,
-      subject: 'Demande de devis reçue - Agence Web PETROSYAN',
+      subject: 'Demande de devis bien reçue 🦉 — Code & Chouette',
       html: `
         <h2>Merci pour votre demande de devis !</h2>
         <p>Bonjour ${name},</p>
-        <p>Nous avons bien reçu votre demande de devis. Notre équipe l'examinera attentivement et nous vous recontacterons sous 48h.</p>
+        <p>Nous avons bien reçu votre demande et nous revenons vers vous sous 48h avec un premier avis et un devis gratuit.</p>
         <p>Merci de votre confiance !</p>
-        <p>L'équipe Agence Web PETROSYAN</p>
+        <p>L'équipe Code & Chouette — les jeunes dévs du quartier, à Dijon</p>
       `
     });
 
