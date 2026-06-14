@@ -3,6 +3,7 @@
    ------------------------------------------------------------
    Ce fichier regroupe le JavaScript de TOUTES les pages :
 
+   0. Remplissage des infos de l'agence (depuis config.js)
    1. Menu burger (mobile)
    2. Mise en évidence du lien de la page en cours
    3. Animations d'apparition au défilement
@@ -17,6 +18,36 @@
    ============================================================ */
 
 function initialiserSite() {
+
+  /* ----------------------------------------------------------
+     0. INFOS DE L'AGENCE (depuis config.js)
+     ----------------------------------------------------------
+     Remplit automatiquement, partout dans le site, les éléments
+     qui portent un attribut data-info ou data-info-email avec les
+     valeurs définies dans config.js.
+
+     Exemples dans le HTML :
+       <span data-info="siret"></span>      → affiche le SIRET
+       <a data-info-email></a>              → lien email cliquable
+
+     👉 Pour modifier une info (email, SIRET...), tout se passe
+        dans config.js — rien à changer ici.
+     ---------------------------------------------------------- */
+  if (typeof INFOS_SITE !== 'undefined') {
+    // Champs texte : on remplace le contenu par la valeur correspondante
+    document.querySelectorAll('[data-info]').forEach(function (element) {
+      const cle = element.getAttribute('data-info');
+      if (INFOS_SITE[cle]) {
+        element.textContent = INFOS_SITE[cle];
+      }
+    });
+
+    // Liens email : on crée un lien mailto + on affiche l'adresse
+    document.querySelectorAll('[data-info-email]').forEach(function (lien) {
+      lien.setAttribute('href', 'mailto:' + INFOS_SITE.email);
+      lien.textContent = INFOS_SITE.email;
+    });
+  }
 
   /* ----------------------------------------------------------
      1. MENU BURGER (mobile)

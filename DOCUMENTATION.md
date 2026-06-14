@@ -54,8 +54,19 @@ ses écouteurs (sinon le menu n'existerait pas encore !).
 > ⚠️ **Piège n°2 :** un `<script>` placé dans un fragment injecté via
 > `innerHTML` **n'est jamais exécuté**. Tout le JavaScript vit dans `main.js`.
 
+### config.js — les infos de l'agence (source unique)
+
+Un objet `INFOS_SITE` regroupe toutes les coordonnées éditables : `nom`,
+`email`, `telephone`, `responsable`, `statut`, `siret`, `adresse`, `hebergeur`.
+Dans le HTML, les éléments portant `data-info="clé"` (texte) ou `data-info-email`
+(lien email) sont remplis automatiquement par `main.js`. **Pour mettre à jour
+une info, on édite uniquement `config.js`** — la modification se répercute sur
+toutes les pages (pied de page, contact, mentions légales, confidentialité).
+
 ### main.js — les interactions
 
+0. **Infos de l'agence** : remplit les `[data-info]` / `[data-info-email]`
+   depuis `config.js`
 1. **Menu burger** (mobile) : bascule la classe `.ouverte` sur la navigation
 2. **Lien actif** : compare l'URL avec les liens du menu, ajoute `.lien-actif`
 3. **Animations d'apparition** : `IntersectionObserver` ajoute `.est-visible`
@@ -97,6 +108,7 @@ charge par **Netlify Forms**, sans aucun serveur :
 
 | Je veux... | Fichier à modifier |
 |---|---|
+| Changer email / SIRET / statut / hébergeur / adresse | **`config.js`** (un seul endroit) |
 | Changer un texte | Le fichier HTML de la page concernée |
 | Changer les couleurs / polices | Variables `:root` en haut de `styles.css` |
 | Ajouter un lien au menu | `includes/header.html` (+ `includes/footer.html`) |

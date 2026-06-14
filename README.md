@@ -15,8 +15,9 @@ boutiques en ligne, refontes et maintenance.
 ├── pricing.html            # Tarifs (Le Nid, L'Envol, La Boutique, Le Sur-Mesure, Le Perchoir)
 ├── about.html              # Qui sommes-nous ? (histoire, valeurs, équipe)
 ├── contact.html            # Contact + formulaire de devis
-├── mentions-legales.html   # Mentions légales (⚠️ compléter les [À COMPLÉTER])
+├── mentions-legales.html   # Mentions légales (valeurs depuis config.js)
 ├── confidentialite.html    # Politique de confidentialité RGPD
+├── config.js               # ⭐ VOS INFOS (email, SIRET, hébergeur...) — À ÉDITER ICI
 ├── styles.css              # TOUTE la mise en forme (mobile-first, très commentée)
 ├── main.js                 # TOUTES les interactions (menu, animations, FAQ, formulaire)
 ├── include-html.js         # Chargeur de fragments (header/footer partagés)
@@ -71,6 +72,9 @@ Clic droit sur `index.html` → « Open with Live Server »
 
 ## Modifications courantes
 
+- **Vos coordonnées** (email, SIRET, statut, adresse, hébergeur, responsable) :
+  **tout est dans [`config.js`](config.js)** — un seul endroit, et ça se met à
+  jour partout (pied de page, contact, mentions légales, confidentialité).
 - **Changer un texte** : directement dans le fichier HTML de la page concernée
 - **Navigation / logo** : `includes/header.html`
 - **Pied de page** : `includes/footer.html`
@@ -85,11 +89,11 @@ Clic droit sur `index.html` → « Open with Live Server »
 Domaine : **`codenchouette.fr`** (acheté chez IONOS). Les URL du code
 (canonical, Open Graph, `sitemap.xml`, `robots.txt`) pointent déjà dessus.
 
-### 2. Compléter les pages légales
+### 2. Pages légales ✅
 
-`mentions-legales.html` et `confidentialite.html` contiennent des
-`[À COMPLÉTER]` (nom du responsable, statut, hébergeur). **Obligatoire en
-France avant la mise en ligne** (loi LCEN + RGPD).
+`mentions-legales.html` et `confidentialite.html` sont remplies
+automatiquement depuis [`config.js`](config.js) (responsable, statut, SIRET,
+hébergeur). Pour modifier ces infos, éditez **uniquement `config.js`**.
 
 ### 3. Le formulaire (rien à faire !)
 

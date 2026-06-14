@@ -19,6 +19,7 @@
 
   <link rel="canonical" href="https://codenchouette.fr/confidentialite.html">
 
+  <script src="config.js" defer></script>
   <script src="include-html.js" defer></script>
   <script src="main.js" defer></script>
 </head>
@@ -34,8 +35,8 @@
     <!-- ========================================================
          POLITIQUE DE CONFIDENTIALITÉ (RGPD)
          ----------------------------------------------------------
-         ⚠️ AVANT LA MISE EN LIGNE : remplacez les [À COMPLÉTER].
-         Le formulaire utilise Netlify Forms (voir section ci-dessous).
+         Les coordonnées (nom du responsable, email) proviennent
+         de config.js. Le formulaire utilise Netlify Forms.
          ======================================================== -->
     <section class="section">
       <div class="conteneur">
@@ -49,8 +50,8 @@
           <h2>Qui est responsable&nbsp;?</h2>
           <p>
             Le responsable du traitement des données est
-            <strong>[À COMPLÉTER&nbsp;: nom du responsable]</strong>, joignable à
-            l'adresse <a href="mailto:petrosyan21000@gmail.com">petrosyan21000@gmail.com</a>.
+            <strong data-info="responsable"></strong>, joignable à
+            l'adresse <a data-info-email href="mailto:petrosyan21000@gmail.com"></a>.
           </p>
         </div>
 
@@ -107,7 +108,7 @@
             Conformément au RGPD, vous pouvez à tout moment demander l'accès, la
             rectification ou la suppression de vos données, ou retirer votre
             consentement. Il suffit de nous écrire à
-            <a href="mailto:petrosyan21000@gmail.com">petrosyan21000@gmail.com</a>
+            <a data-info-email href="mailto:petrosyan21000@gmail.com"></a>
             — on s'en occupe sous quelques jours.
           </p>
           <p>

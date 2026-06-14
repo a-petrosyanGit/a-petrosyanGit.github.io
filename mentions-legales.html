@@ -19,6 +19,7 @@
 
   <link rel="canonical" href="https://codenchouette.fr/mentions-legales.html">
 
+  <script src="config.js" defer></script>
   <script src="include-html.js" defer></script>
   <script src="main.js" defer></script>
 </head>
@@ -46,16 +47,17 @@
 
         <div class="carte apparition">
           <h2>Éditeur du site</h2>
+          <!-- Toutes ces valeurs proviennent de config.js (data-info) -->
           <p>
             Le site <strong>Code &amp; Chouette</strong> est édité par&nbsp;:<br>
-            <strong>[À COMPLÉTER&nbsp;: nom et prénom du responsable]</strong><br>
-            Statut&nbsp;: [À COMPLÉTER&nbsp;: ex. entrepreneur individuel / micro-entreprise / association]<br>
-            SIRET&nbsp;: [À COMPLÉTER si vous avez une structure&nbsp;; sinon supprimez cette ligne]<br>
-            Adresse&nbsp;: [À COMPLÉTER], Dijon (21000), France<br>
-            Email&nbsp;: <a href="mailto:petrosyan21000@gmail.com">petrosyan21000@gmail.com</a>
+            <strong data-info="responsable"></strong><br>
+            Statut&nbsp;: <span data-info="statut"></span><br>
+            SIRET&nbsp;: <span data-info="siret"></span><br>
+            Adresse&nbsp;: <span data-info="adresse"></span><br>
+            Email&nbsp;: <a data-info-email href="mailto:petrosyan21000@gmail.com"></a>
           </p>
           <p>
-            Directeur de la publication&nbsp;: <strong>[À COMPLÉTER&nbsp;: même personne en général]</strong>
+            Directeur de la publication&nbsp;: <strong data-info="responsable"></strong>
           </p>
         </div>
 
@@ -63,9 +65,7 @@
           <h2>Hébergement</h2>
           <p>
             Le site est hébergé par&nbsp;:<br>
-            <strong>[À COMPLÉTER selon votre choix, par exemple&nbsp;:]</strong><br>
-            Netlify, Inc. — 512 2nd Street, Suite 200, San Francisco, CA 94107, États-Unis — netlify.com<br>
-            <em>ou</em> GitHub, Inc. — 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis — github.com
+            <strong data-info="hebergeur"></strong>
           </p>
         </div>
 
